@@ -1,0 +1,147 @@
+%!TEX root = bug-taxo.tex
+
+\section{Study Design}
+
+The goal of this study is to analyze the location of bug fixes, with the purpose of classifying bug fixes into types.
+More specifically, this study aims to answer the folliwing two research questions:
+
+\begin{itemize}
+	\item {\bf RQ$_1$:} {\it What are the proportions of different types of bugs?} This research question aims to what extent bug can be classified according to their fix-locations and the proportion of each types.
+  Specifically, we investigate if different types of bugs exists at all and if the proportion of different types in non-negligible.
+  As discussed ealier, knowing, for example, that bugs of Type 2 and 4 are the most predominant ones suggests that we need to investigate techniques to help detect whether an incoming bug is of Types 2 and 4 by examining historical data.
+  Similarly, if we can automatically identify a bug that is related to another one that has been fixed then we can reuse the results of reproducing the first bug in reproducing the second one.
+
+	\item {\bf RQ$_2$:} {\it How complex is each type of bugs?} This second research question aims to investigate the complexity of the different types of bug.
+  More specifically, we analyze and discuss the complexity of different types of bugs using code and process metrics both.
+  For the code aspect of the complexity, we compute the number of different files impacted by the fix and the number of hunks and churns.
+  We do not compute any statical complexity metrics such as cyclomatic complexity \cite{McCabe1989}.
+  For the process aspect of complexity, we analyze the severity of the bug, the amount of duplicate bug report submitted, the number of times a bug report gets reopened, the number of comments and the time required to fix the bug.
+
+\end{itemize}
+
+\subsection{Context Selection}
+
+The context of this study consists of the change history of 388 projects belonging to two software ecosystem, namely, Apache and Netbeans.
+Tbale \ref{table:datasets} reports, for each of them, (i) the number of projects analyzed, (ii) size ranges in terms of the number of classes and KLOC, (iii) the overall number of commits and issues analyzed, and (iv) the average, minimum, and maximum length of the projects' story (in years).
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{@{}c|c|c|c|c@{}}
+\textbf{Dataset} & \textbf{R/F BR} & \textbf{CS} & \textbf{Files} & \textbf{Projects} \\ \hline \hline
+Netbeans         & 53,258          & 122,632     & 30,595         & 39                \\
+Apache           & 49,449          & 106,366     & 38,111         & 349               \\
+Total            & 102,707         & 229,153     & 68,809         & 388               \\ \hline \hline
+
+\end{tabular}
+\end{center}
+
+\caption{Datasets\label{table:datasets}}
+\end{table}
+
+
+
+All the analysed projects are hosted in {\it Git} or {\it Mercurial} repositories and have either a {\it Jira} or a {\it Bugzilla} issue tracker associated with it.
+The Apache ecosystem consists in 349 projects written in various programming languages (C, C++, Java, Python, ...) and uses {\it Git} and {\it Jira}.
+These projects represent the Apache ecosystem in its entirety; no system has been excluded from our study.
+The complete list can be found online\footnote{https://projects.apache.org/projects.html?name}.
+The Netbeans ecosystem consists in 39 projects mostly written in Java.
+Similarly to the Apache ecosystem, we did not select some of the projects belonging to the Netbeans ecosystem but all of them.
+The Netbeans community uses {\it Bugzilla} and {\it Mercurial}.
+
+The choice of the ecosystems to analyze is not random, but rather driven by the motivation to consider projects having (i) different sizes, (ii) different architectures, and (iii) different development bases and processes.
+Indeed, Apache project are extremely various in terms of size of the development team, purpose and technical choices \cite{Bavota2013}.
+On the other side, Netbeans have a relatively stable list of core developer and a common vision shared through the 39 related projects \cite{Wang2011}.
+
+Cumulatively, these datasets span from 2001 to 2014. In summary, our consolidated dataset contains 102,707 bugs, 229,153 changesets, 68,809 files that have been modified to fix the bugs, 462,848 comments, and 388 distinct systems.
+We also collected 221 million lines of code modified to fix the bugs, identified 3,284 sub-projects, and 17,984 unique contributors to these bug report and source code version management systems.
+The cumulated opening time for all the bugs reaches 10,661 working years (3,891,618 working days) which translates into more than one billion dollars\cite{Usnews}.
+
+\subsection{Data Extraction and Analysis}
+
+This subsection describes the data extraction and analysis process that we followed to answer our research questions.
+
+\subsubsection{What are the proportions of different types of bugs?} To answer {\bf RQ$_1$}, we cloned the 349 {\it git} repositories belonging to the Apache ecosystem and the 39 {\it mercurial} repositories belonging to the Netbeans ecosystem.
+The raw size of the cloned source code alone, exluding binaries, images and other non-text file, is 163 GB.
+Then, we extracted all the 102,707 closed issue that have been resolved using the {\it RESOLVED/FIXED} tags.
+Indeed, this study aims to classify bugs according to their fix locations.
+If an issue is fixed by other means than {\it fixing} the source code, then, it falls outside the scope our study.
+In order to assign commits to issues we used is the regular expression-based approach by Fischer et al. \cite{Fischer} matching the issue ID in the commit note.
+Using this technic, we were able to link almost 40\% (40,493 out of 102,707) of our resolved/fixed issues to 229,153 commits.
+An issue can be fixed with several commits.
+
+We choose not to use more complex technics like ReLink, an approach proposed by Wu et al.\cite{Wu2011}, which considers the following constraints: (i) matching the committer/authors with issue tracking contributor name/email; (ii) the time interval between the commit and the last comment posted by the same author/contributor on the issue tracker must be less than seven days; and (iii) Vector Space Model (VSM) cosine similarity between the commit note and the last comment referred above or greater than 0.7 because we belive that mining more than forty thousands issues is enough to be significant.
+
+Using our generated consolidated dataset, we extracted the files $f_i$ impacted by each commit $c_i$ for each one of our 388 projects.
+Then, we classify the bugs according to the following:
+
+\begin{itemize}
+  \item {\bf Type 1:} A bug is tagged type 1 if it is fixed by modifying a file $f_i$ and $f_i$ is not involved in any other bug fix.
+  \item {\bf Type 2:} A bug is tagged type 2 if it is fixed by modifying several files $f_{i..n}$ and the files $f_{i..n}$ are not involved in any other bug fix.
+  \item {\bf Type 3:} A bug is tagged type 3 if it is fixed by modifying a file $f_{i}$ and the file $f_{i}$ is involved in fixing other bugs.
+  \item {\bf Type 4:} A bug is tagged type 4 if it is fixed by modifying several files $f_{i..n}$ and the files $f_{i..n}$ are involved in any other bug fix.
+\end{itemize}
+
+To answer this question, we analyze whether any type is predominant in the studied ecosystem, by testing the null hypothesis:
+
+\begin{itemize}
+	\item $H_{01A}$ : The proportion of Types does not
+change significantly across the studied ecosystems
+\end{itemize}
+
+We test this hypothesis by observing both a ``global'' (across ecosystem) and a ``local'' predominance (per ecosystem) of the different types of bugs.
+We must observe these two aspects to ensure that the predominance of a particular type of bug is not circumstantial (in few given systems only) but is also not due to some other, unknown factors (in all systems but not in a particular ecosystem).
+
+We answer {\bf RQ$_1$} in two steps.
+The first step is to use descriptive statistics; we compute the ratio of each types to the total number of bugs in the dataset.
+
+In the second step, we compare the proportions of the different types of bugs with respect to the ecosystem where the bugs were found.
+We build the contingency table with these two qualitative variables (the type and studied ecosystem) and test the null hypothesis {\bf H$_{01A}$} to assess whether the proportion of a particular type of bugs is related to a specific ecosystem or not.
+
+We use the Pearson's chi-squared test to reject the null hypothesis $H_{01A}$.
+Pearson's chi-squared independence test is used to analyze the relationship between two qualitative data, in our study the type bugs and the studied ecosystem.
+The results of Pearson's chi-squared independence test are considered
+statistically significant at $\alpha$ = 0.05.
+If p-value $\le$ 0.05, we reject the null hypothesis $H_{01A}$ and conclude that the proportion of each types is different for each ecosystem.
+
+Overall, the data extraction and manipulation for {\bf RQ$_1$} (i.e., cloning repositories, linking commits to issues and tagging issues by type) took thirteen weeks on two Linux servers having 1 quadcore
+3.10 GHz CPU and 12 Gb of RAM each.
+
+\subsubsection{How complex is each type of bugs?}  To answer {\bf RQ$_2$} we went through our 40,493 of our resolved/fixed issues and the linked 229,153 commits in order to compute code and process metrics for each of them.
+These metrics will then be used to assess the complexity of a bug.
+The computed process metrics are:
+
+\begin{itemize}
+  \item The time $t$ it took to resolve issue $i$.
+  \item The number of issues $dup$ tagged as duplicate of issue $i$.
+  \item The number of time issue $i$ got reopen $reop$.
+  \item The number of comments $comment$ on issue $i$.
+  \item The severity $sev$ of the issue $i$.
+\end{itemize}
+
+The computed code metrics are:
+
+\begin{itemize}
+  \item The number of files $f$ impacted by issue $i$.
+  \item The number of commit $c$ required to fix the issue $i$.
+  \item The number of hunks $h$ required to fix the issue $i$.
+  \item The number of churns $ch$ required to fix the issue $i$.
+\end{itemize}
+
+
+We address the relation between types and the complexity of the bugs in using our metrics.
+We analyze whether Types 2 and 4 bugs are more complex to handle than Types 1 and 3 bugs, by testing the null hypotheses:
+
+\begin{itemize}
+ \item  $H_{02S}$ : The severity of different types is not significantly different
+ \item  $H_{02D}$ : Different types are not significantly more likely to get duplicated.
+ \item  $H_{02R}$ : Different types are not significantly more likely to get reopened.
+ \item $H_{02T}$ : There is no statistically-significant difference
+between the duration of fixing of different types.
+\end{itemize}
+
+For each hypothesis, we build a contingency table with the qualitative variables type of bugs and the dependent variable.
+
+We use the Pearson's chi-squared test to reject the null
+hypothesis $H_{02D}$ (respectively $H_{02R}$ ) and $H_{02S}$. The results of Pearson's chi-squared independence test are considered
+statistically significant at $\alpha$ = 0.05.
+If a p-value $\le$ 0.05, we reject the null hypothesis $H_{02D}$ (respectively $H_{02R}$) andconclude the fact that the bug is more likely to be duplicated (respectively reopened) is related to the type of the bug and we reject $H_{02S}$ and conclude that the severity level of the bug is related to the bug type.

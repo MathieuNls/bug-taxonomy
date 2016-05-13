@@ -1,0 +1,88 @@
+\documentclass[journal]{IEEEtran}
+
+\usepackage[left=2cm, top=3cm, right=2cm, bottom=3cm]{geometry}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}%
+\usepackage{multirow}
+\usepackage{xargs}
+\usepackage{xcolor}  % Coloured text etc.
+\usepackage{hyperref}
+\usepackage{pgfplots}
+\usepackage{listings}
+\usepackage{longtable}
+
+
+
+
+\begin{document}
+
+\title{A New Taxonomy of Bugs Based on the Location of the Correction: An Empirical Study}
+
+\author{
+
+\IEEEauthorblockN{
+  Mathieu	Nayrolles\IEEEauthorrefmark{1},
+  Abdelwahab Hamou-Lhadj\IEEEauthorrefmark{1},
+  Abdou	Maiga\IEEEauthorrefmark{1},
+  Alf	Larsson\IEEEauthorrefmark{2},
+  Sigrid Eldh\IEEEauthorrefmark{2}}
+
+\IEEEauthorblockA{\vspace{0.2cm}\IEEEauthorrefmark{1}Software Behaviour Analysis (SBA) Research Lab
+\\ECE, Concordia University, Montr\'eal, Canada
+\\\{m\_nayrol, a\_maiga, abdelw\}@ece.concordia.ca
+}
+\IEEEauthorblockA{\\\vspace{0.2cm}\IEEEauthorrefmark{2}Ericsson
+\\Stockholm, Sweden\\
+\{alf.larsson, sigrid.eldh\}@ericsson.com}
+
+}
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\begin{abstract}
+The abstract goes here.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Bug taxonomy, Bug tracking systems, Empirical studies
+Software maintenance
+\end{IEEEkeywords}
+
+
+\IEEEpeerreviewmaketitle
+
+
+\input{introduction}
+\input{preliminaries}
+\input{study}
+
+
+\section{Conclusion}
+The conclusion goes here.
+
+\section{Reproduction Package}
+
+We provide a repoduction package that is publicly available at https://research.mathieu-nayrolles.com/taxonomy/reproduction.zip.
+All the instructions needed to reproduce our results are self contained in the provided archive.
+
+
+\input{appendice}
+
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+\bibliographystyle{IEEEtran}
+\bibliography{library}
+
+\end{document}
