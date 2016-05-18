@@ -1,7 +1,6 @@
 #!/usr/bin/env Rscript
 
 #File reading and variables declarations
-
 apache.t1 <- read.csv(file="ap_t1.csv",head=TRUE,sep=",")
 apache.t2 <- read.csv(file="ap_t2.csv",head=TRUE,sep=",")
 apache.t3 <- read.csv(file="ap_t3.csv",head=TRUE,sep=",")
@@ -35,9 +34,11 @@ all.t3t4 <- rbind(all.t3, all.t4)
 all.t2t4 <- rbind(all.t2, all.t4)
 all.t2t3 <- rbind(all.t2, all.t3)
 
+#Global variable for significance percentage
 stats.sig <<- 0
 stats.unsig <<- 0
 
+# Given types and type combination, this function returns wilcox tests and the related descriptive Statistics
 wilcoxEcosystem <- function(t1, t2, t3, t4, ct1t2, ct1t3, ct1t4, ct3t4, ct2t4, ct2t3, columnName){
 
   result <- list (
@@ -56,6 +57,7 @@ wilcoxEcosystem <- function(t1, t2, t3, t4, ct1t2, ct1t3, ct1t4, ct3t4, ct2t4, c
   return(result)
 }
 
+#Generates a boxplot
 boxplotEcosystem <- function(columnName){
   boxplot(
     apache.t1[[columnName]],
@@ -85,13 +87,14 @@ isStatisticallySignificant <- function(value){
   #print(value)
   if (value < 0.05 || is.nan(value)) {
     stats.sig <<- stats.sig + 1
-    return("✓")
+    return("✓ (< 0.05)")
   } else {
     stats.unsig <<- stats.unsig + 1
-    return("✕")
+    return(paste("✕ (", round(value, digits=2), ")", sep = ""))
   }
 }
 
+#Compute descriptive Statistics for a column
 computeDescriptiveStatForColumn <- function (table, columnName, total){
 
   mean <- round(mean(table[[columnName]]), digits = 3)
@@ -111,6 +114,7 @@ computeDescriptiveStatForColumn <- function (table, columnName, total){
   )
 }
 
+# Compute descriptive Stats for each type
 computeDescriptiveStats <- function(t1, t2, t3, t4, ct1t2, ct1t3, ct1t4, ct3t4, ct2t4, ct2t3, columnName){
 
   total <- (sum(t1[[columnName]]) + sum(t2[[columnName]]) + sum(t3[[columnName]]) + sum(t4[[columnName]]))
@@ -121,24 +125,28 @@ computeDescriptiveStats <- function(t1, t2, t3, t4, ct1t2, ct1t3, ct1t4, ct3t4, 
     t2 = computeDescriptiveStatForColumn(t2, columnName, total),
     t3 = computeDescriptiveStatForColumn(t3, columnName, total),
     t4 = computeDescriptiveStatForColumn(t4, columnName, total),
-    ct1t2 = computeDescriptiveStatForColumn(ct1t2, columnName, total),
-    ct1t3 = computeDescriptiveStatForColumn(ct1t3, columnName, total),
-    ct1t4 = computeDescriptiveStatForColumn(ct1t4, columnName, total),
-    ct3t4 = computeDescriptiveStatForColumn(ct3t4, columnName, total),
-    ct2t4 = computeDescriptiveStatForColumn(ct2t4, columnName, total),
-    ct2t3 = computeDescriptiveStatForColumn(ct2t3, columnName, total)
+    t1t2 = computeDescriptiveStatForColumn(ct1t2, columnName, total),
+    t1t3 = computeDescriptiveStatForColumn(ct1t3, columnName, total),
+    t1t4 = computeDescriptiveStatForColumn(ct1t4, columnName, total),
+    t3t4 = computeDescriptiveStatForColumn(ct3t4, columnName, total),
+    t2t4 = computeDescriptiveStatForColumn(ct2t4, columnName, total),
+    t2t3 = computeDescriptiveStatForColumn(ct2t3, columnName, total)
   )
 }
 
+# compute wilcox tests and chi-square test for each ecosystem
 statsTest <- function(columnName){
 
   #Apache
+  print("APACHE")
   aWilcox <- wilcoxEcosystem(apache.t1, apache.t2, apache.t3, apache.t4, apache.t1t2, apache.t1t3, apache.t1t4, apache.t3t4, apache.t2t4, apache.t2t3, columnName)
 
   #Netbeans
+  print("Netbeans")
   nWilcox <- wilcoxEcosystem(netbeans.t1, netbeans.t2, netbeans.t3, netbeans.t4, netbeans.t1t2, netbeans.t1t3, netbeans.t1t4, netbeans.t3t4, netbeans.t2t4, netbeans.t2t3, columnName)
 
   #All
+  print("All")
   allWilcox <- wilcoxEcosystem(all.t1, all.t2, all.t3, all.t4, all.t1t2, all.t1t3, all.t1t4, all.t3t4, all.t2t4, all.t2t3, columnName)
 
   freqs = c(
@@ -152,24 +160,64 @@ statsTest <- function(columnName){
     nWilcox$descriptiveStats$t4$sum
   )
 
+  freqsCumul = c(
+    aWilcox$descriptiveStats$t1t2$sum,
+    aWilcox$descriptiveStats$t3t4$sum,
+    nWilcox$descriptiveStats$t1t2$sum,
+    nWilcox$descriptiveStats$t3t4$sum
+  )
+
   data.matrix = matrix(freqs, nrow=2)
   dimnames(data.matrix) = list(ecosystem=c("Apache","Netbeans"), types=c("T1","T2","T3", "T4"))
+
+  data.cumul.matrix = matrix(freqsCumul, nrow=2)
+  dimnames(data.cumul.matrix) = list(ecosystem=c("Apache","Netbeans"), types=c("T1T2","T3T4"))
+
+  freqsMean = c(
+    aWilcox$descriptiveStats$t1$mean,
+    aWilcox$descriptiveStats$t2$mean,
+    aWilcox$descriptiveStats$t3$mean,
+    aWilcox$descriptiveStats$t4$mean,
+    nWilcox$descriptiveStats$t1$mean,
+    nWilcox$descriptiveStats$t2$mean,
+    nWilcox$descriptiveStats$t3$mean,
+    nWilcox$descriptiveStats$t4$mean
+  )
+
+  freqsMeanCumul = c(
+    aWilcox$descriptiveStats$t1t2$mean,
+    aWilcox$descriptiveStats$t3t4$mean,
+    nWilcox$descriptiveStats$t1t2$mean,
+    nWilcox$descriptiveStats$t3t4$mean
+  )
+
+  data.matrix.mean = matrix(freqsMean, nrow=2)
+  dimnames(data.matrix) = list(ecosystem=c("Apache","Netbeans"), types=c("T1","T2","T3", "T4"))
+
+  data.cumul.matrix.mean = matrix(freqsMeanCumul, nrow=2)
+  dimnames(data.cumul.matrix.mean) = list(ecosystem=c("Apache","Netbeans"), types=c("T1T2","T3T4"))
 
   result <- list(
     aWilcox = aWilcox,
     nWilcox = nWilcox,
     allWilcox = allWilcox,
-    mean.matrix =  data.matrix,
-    chisq = round(chisq.test(data.matrix)$p.value, digits = 4)
+    sum.matrix =  data.matrix,
+    mean.matrix = data.matrix.mean,
+    chisq.sum = round(chisq.test(data.matrix)$p.value, digits = 3),
+    chisq.mean = round(chisq.test(data.matrix.mean)$p.value, digits = 3),
+    chisq.cumul.sum = round(chisq.test(data.cumul.matrix)$p.value, digits = 3),
+    chisq.cumul.mean = round(chisq.test(data.cumul.matrix.mean)$p.value, digits = 3)
   )
 
   return(result)
 }
 
+#Builds a string intended to be eval'd
 evalDescriptiveMetric <- function(metric, desc, dataset, type){
   return (paste(metric, "$", dataset, "$descriptiveStats$t", type, "$", desc,sep=""))
 }
 
+#Builds a string intended to be eval'd
 evalQuantitativeMetric <- function(metric, tin, tout, dataset){
 
   if(tin == tout){
@@ -181,22 +229,77 @@ evalQuantitativeMetric <- function(metric, tin, tout, dataset){
   }
 }
 
+#  We followed the guidelines in [21] to interpret the effect size values:
+#  small for d < 0.33 (positive as well as negative values), medium for 0.33 ≤ d < 0.474 and large for d ≥ 0.474.
+# W. J. Conover, Practical Nonparametric Statistics, 3rd ed. Wiley, 1998
+effectSizeValue <- function(value){
+  if(value < 0.33){
+    return (paste("small (", value, ")", sep = ""))
+  }else if(value < 0.474){
+    return (paste("medium (", value, ")", sep = ""))
+  }else {
+    return (paste("large (", value, ")", sep = ""))
+  }
+}
+
+#Builds the results matrixes
 buildResultMatrix <- function(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rHunks,rChurns){
 
   matrix <- matrix(
-    c("Ecosys","Types","Metric","μ", "∑", "x", "σX", "%","T1","T2","T3","T4"),
+    c("Ecosys","Types","Metric","μ", "∑", "x", "σX", "%","T1","T2","T3","T4", "p-mean", "p-sum"),
     nrow=109,
-    ncol=12,
+    ncol=14,
     byrow = TRUE
   )
+
+  matrixCombined <- matrix(
+    c("Ecosys", "metric", "t1t2", "","","","", "t3t4", "","","","", "wilcox", "p-mean chisq", "p-mean sum", #15
+      "", "", "μ", "∑", "x", "σX", "%", "μ", "∑", "x", "σX", "%", "", "", ""
+    ),
+    nrow=30,
+    ncol=15,
+    byrow=TRUE
+  )
+
   na <- "n.a"
   types <- 1:4
+  combinedType <- c("t1t2", "t2t3")
   datasets <- c("aWilcox", "nWilcox", "allWilcox")
   metrics <- c("rDup","rTime","rCom","rReop","rFiles","rSeverity", "rChange","rHunks","rChurns")
-  metricsName <- c("Dup","Time","Com","Reop","Files","Severity", "Change","Hunks","Churns")
+  metricsName <- c("Dup.","Tim.","Com.","Reo.","Fil.","Sev.", "Cha.","Hun.","Chur.")
   currRow <- 1
+  currCombinedRow <- 2
 
   for(dataset in datasets) {
+
+    #nWilcox$descriptiveStats$ct1t2
+    #nWilcox$t1t2vt3t4$p.mean
+
+    currMetricName <- 0
+
+    for (metric in metrics) {
+
+      currCombinedRow <- currCombinedRow + 1
+      currMetricName <- currMetricName + 1
+
+      matrixCombined[currCombinedRow, ] = c(
+        dataset,
+        metricsName[currMetricName],
+        eval(parse(text=evalDescriptiveMetric(metric, "mean", dataset, "1t2"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "sum", dataset, "1t2"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "median", dataset, "1t2"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "std", dataset, "1t2"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "perc", dataset, "1t2"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "mean", dataset, "3t4"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "sum", dataset, "3t4"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "median", dataset, "3t4"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "std", dataset, "3t4"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "perc", dataset, "3t4"))),
+        eval(parse(text=evalQuantitativeMetric(metric, "1t2v", "3t4", dataset))),
+        eval(parse(text=paste("effectSizeValue(", metric, "$chisq.cumul.mean)", sep = ""))),
+        eval(parse(text=paste("effectSizeValue(", metric, "$chisq.cumul.sum)", sep = "")))
+      )
+    }
 
     for(type in types) {
 
@@ -206,10 +309,6 @@ buildResultMatrix <- function(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rH
 
           currRow <- currRow + 1
           currMetricName <- currMetricName + 1
-
-        #  print(eval(parse(text=evalDescriptiveMetric(metric, "mean", dataset, type))))
-
-        #  print(eval(parse(text=evalQuantitativeMetric(metric, type, 2, dataset))))
 
           matrix[currRow, ] = c(
             dataset,
@@ -223,37 +322,46 @@ buildResultMatrix <- function(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rH
             eval(parse(text=evalQuantitativeMetric(metric, type, 1, dataset))),
             eval(parse(text=evalQuantitativeMetric(metric, type, 2, dataset))),
             eval(parse(text=evalQuantitativeMetric(metric, type, 3, dataset))),
-            eval(parse(text=evalQuantitativeMetric(metric, type, 4, dataset)))
+            eval(parse(text=evalQuantitativeMetric(metric, type, 4, dataset))),
+            eval(parse(text=paste("effectSizeValue(", metric, "$chisq.mean)", sep = ""))),
+            eval(parse(text=paste("effectSizeValue(", metric, "$chisq.sum)", sep = "")))
           )
       }
     }
+
+
   }
-
-
-
-
 
   write.table(matrix, file="result.csv", quote = FALSE, sep = ";", row.names = FALSE,col.names = FALSE)
 
+  write.table(matrixCombined, file="resultCombined.csv", quote = FALSE, sep = ";", row.names = FALSE,col.names = FALSE)
+
   print(matrix)
+  print(matrixCombined)
+
+
 }
 
-printResult <- function(header, result){
-  print(header)
-  print(result$wilcox.matrix)
-  print(result$mean.matrix)
-  print(result$chisq)
-}
+
 
 rDup <- statsTest("DUPLICATE_BY")
+print("DUPLICATE_BY")
 rTime <- statsTest("FIXING_TIME")
+print("FIXING_TIME")
 rCom <- statsTest("COMMENTS")
+print("COMMENTS")
 rReop <- statsTest("REOPENNED")
+print("REOPENNED")
 rFiles <- statsTest("FILES_IMPACTED")
-rSeverity <- statsTest("FILES_IMPACTED")
+print("FILES_IMPACTED")
+rSeverity <- statsTest("SEVERITY")
+print("SEVERITY")
 rChange <- statsTest("CHANGESET_REQUIRED")
+print("CHANGESET_REQUIRED")
 rHunks <- statsTest("HUNKS")
+print("HUNKS")
 rChurns <- statsTest("CHURNS")
+print("CHURNS")
 
 buildResultMatrix(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rHunks,rChurns)
 
