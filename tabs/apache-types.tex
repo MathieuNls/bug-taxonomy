@@ -4,13 +4,12 @@
 % \usepackage{graphicx}
 \begin{table*}[]
 \centering
-\samll
-\setlength\extrarowheight{6pt}
-\caption{My caption}
-\label{my-label}
+\small
+\caption{Apache Ecosystem Complexity Metrics Comparison and Mann-whitney test results. \\ $\mu$:mean, $\sum$:sum, $\hat{x}$:median, $\sigma$:standard deviation, $\%$:percentage}
+\label{tab:apache-eco}
 \begin{tabular}{ccccccc|ccccc}
 
-Types & Metric &$^\mu$ & $^\sum$ & $^\hat{x}$ & $^\sigma$ & $^\%$ & T1 & T2 & T3 & T4 \\ \hline \rowcolor{gray!25}
+Types & Metric &$\mu$ & $\sum$ & $\hat{x}$ & $\sigma$ & $\%$ & T1 & T2 & T3 & T4 \\ \hline \rowcolor{gray!25}
 & Dup. & 0.026 & 51 & 0 & 0.2 & 14.8 & n.a & \xmark (0.53) & \checkmark  (\textless 0.05) & \xmark (0.45)  \\ \rowcolor{gray!25}
 & Tim. & 91.574 & 180217 & 4 & 262 & 21.8 & n.a & \checkmark  (\textless 0.05) & \checkmark  (\textless 0.05) & \checkmark  (\textless 0.05)  \\ \rowcolor{gray!25}
 & Com. & 4.355 & 8571 & 3 & 4.7 & 9.5 & n.a & \checkmark  (\textless 0.05) & \xmark (0.17) & \checkmark  (\textless 0.05)  \\ \rowcolor{gray!25}

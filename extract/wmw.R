@@ -59,7 +59,7 @@ wilcoxEcosystem <- function(t1, t2, t3, t4, ct1t2, ct1t3, ct1t4, ct3t4, ct2t4, c
 
 #Generates a boxplot
 boxplotEcosystem <- function(columnName){
-  boxplot(
+  box <- boxplot(
     apache.t1[[columnName]],
     apache.t2[[columnName]],
     apache.t3[[columnName]],
@@ -79,6 +79,11 @@ boxplotEcosystem <- function(columnName){
       expression(T1),expression(T2),expression(T3),expression(T4)
       ),
   	xlab="Types", ylab=columnName)
+
+  mytable <- box$stats
+  colnames(mytable)<-box$names
+  rownames(mytable)<-c('min','lower quartile','median','upper quartile','max')
+  print(mytable)
 }
 
 # The results are intended as statistically significant at α = 0.05.
@@ -137,6 +142,8 @@ computeDescriptiveStats <- function(t1, t2, t3, t4, ct1t2, ct1t3, ct1t4, ct3t4, 
 # compute wilcox tests and chi-square test for each ecosystem
 statsTest <- function(columnName){
 
+  boxplotEcosystem(columnName)
+
   #Apache
   print("APACHE")
   aWilcox <- wilcoxEcosystem(apache.t1, apache.t2, apache.t3, apache.t4, apache.t1t2, apache.t1t3, apache.t1t4, apache.t3t4, apache.t2t4, apache.t2t3, columnName)
@@ -162,51 +169,28 @@ statsTest <- function(columnName){
 
   freqsCumul = c(
     aWilcox$descriptiveStats$t1t2$sum,
-    aWilcox$descriptiveStats$t3t4$sum,
-    nWilcox$descriptiveStats$t1t2$sum,
     nWilcox$descriptiveStats$t3t4$sum
+  )
+
+  freqsCumulTwo = c(
+    aWilcox$descriptiveStats$t1t3$sum,
+    nWilcox$descriptiveStats$t2t4$sum
   )
 
   data.matrix = matrix(freqs, nrow=2)
   dimnames(data.matrix) = list(ecosystem=c("Apache","Netbeans"), types=c("T1","T2","T3", "T4"))
 
-  data.cumul.matrix = matrix(freqsCumul, nrow=2)
-  dimnames(data.cumul.matrix) = list(ecosystem=c("Apache","Netbeans"), types=c("T1T2","T3T4"))
-
-  freqsMean = c(
-    aWilcox$descriptiveStats$t1$mean,
-    aWilcox$descriptiveStats$t2$mean,
-    aWilcox$descriptiveStats$t3$mean,
-    aWilcox$descriptiveStats$t4$mean,
-    nWilcox$descriptiveStats$t1$mean,
-    nWilcox$descriptiveStats$t2$mean,
-    nWilcox$descriptiveStats$t3$mean,
-    nWilcox$descriptiveStats$t4$mean
-  )
-
-  freqsMeanCumul = c(
-    aWilcox$descriptiveStats$t1t2$mean,
-    aWilcox$descriptiveStats$t3t4$mean,
-    nWilcox$descriptiveStats$t1t2$mean,
-    nWilcox$descriptiveStats$t3t4$mean
-  )
-
-  data.matrix.mean = matrix(freqsMean, nrow=2)
-  dimnames(data.matrix) = list(ecosystem=c("Apache","Netbeans"), types=c("T1","T2","T3", "T4"))
-
-  data.cumul.matrix.mean = matrix(freqsMeanCumul, nrow=2)
-  dimnames(data.cumul.matrix.mean) = list(ecosystem=c("Apache","Netbeans"), types=c("T1T2","T3T4"))
+  data.cumul.matrix = matrix(freqsCumul, nrow=1)
+  data.cumul.two.matrix = matrix(freqsCumulTwo, nrow=1)
 
   result <- list(
     aWilcox = aWilcox,
     nWilcox = nWilcox,
     allWilcox = allWilcox,
     sum.matrix =  data.matrix,
-    mean.matrix = data.matrix.mean,
     chisq.sum = round(chisq.test(data.matrix)$p.value, digits = 3),
-    chisq.mean = round(chisq.test(data.matrix.mean)$p.value, digits = 3),
     chisq.cumul.sum = round(chisq.test(data.cumul.matrix)$p.value, digits = 3),
-    chisq.cumul.mean = round(chisq.test(data.cumul.matrix.mean)$p.value, digits = 3)
+    chisq.cumul.two.sum = round(chisq.test(data.cumul.two.matrix)$p.value, digits = 3)
   )
 
   return(result)
@@ -233,7 +217,12 @@ evalQuantitativeMetric <- function(metric, tin, tout, dataset){
 #  small for d < 0.33 (positive as well as negative values), medium for 0.33 ≤ d < 0.474 and large for d ≥ 0.474.
 # W. J. Conover, Practical Nonparametric Statistics, 3rd ed. Wiley, 1998
 effectSizeValue <- function(value){
-  if(value < 0.33){
+
+  if(value < 0.01){
+    return("<0.01")
+  }else if(value <0.05){
+    return("<0.05")
+  }else if(value < 0.33){
     return (paste("small (", value, ")", sep = ""))
   }else if(value < 0.474){
     return (paste("medium (", value, ")", sep = ""))
@@ -242,22 +231,175 @@ effectSizeValue <- function(value){
   }
 }
 
+buildRQOneMatrix <- function(){
+
+  sumApache <-  nrow(apache.t1) + nrow(apache.t2) + nrow(apache.t3) + nrow(apache.t4)
+
+  sumNetbeans <-  nrow(netbeans.t1) + nrow(netbeans.t2) + nrow(netbeans.t3) + nrow(netbeans.t4)
+
+  sumAll <- sumApache + sumNetbeans
+
+  chisqAll <- effectSizeValue(round(
+    chisq.test(
+      matrix(
+      c(
+        nrow(apache.t1),
+        nrow(apache.t2),
+        nrow(apache.t3),
+        nrow(apache.t4),
+        nrow(netbeans.t1),
+        nrow(netbeans.t2),
+        nrow(netbeans.t3),
+        nrow(netbeans.t4),
+        nrow(all.t1),
+        nrow(all.t2),
+        nrow(all.t3),
+        nrow(all.t4)
+      ), nrow=3)
+    )$p.value,
+    digits = 3
+  ))
+
+  chisqCombined <- effectSizeValue(round(
+    chisq.test(
+      matrix(
+      c(
+        nrow(apache.t1t2),
+        nrow(apache.t3t4),
+        nrow(netbeans.t1t2),
+        nrow(netbeans.t3t4),
+        nrow(all.t1t2),
+        nrow(all.t3t4)
+      ), nrow=3)
+    )$p.value,
+    digits = 3
+  ))
+
+  chisqCombinedTwo <- effectSizeValue(round(
+    chisq.test(
+      matrix(
+      c(
+        nrow(apache.t1t3),
+        nrow(apache.t2t4),
+        nrow(netbeans.t1t3),
+        nrow(netbeans.t2t4),
+        nrow(all.t1t3),
+        nrow(all.t2t4)
+      ), nrow=3)
+    )$p.value,
+    digits = 3
+  ))
+
+  rqOneMatrix <- matrix(
+    c(
+      "Ecosystem", "T1","T2","T3","T4", "chisq",
+      # Ends of head line
+      "Apache",
+      paste(nrow(apache.t1), " (", round(nrow(apache.t1)/sumApache*100, digits=1), "%)"),
+      paste(nrow(apache.t2), " (", round(nrow(apache.t2)/sumApache*100, digits=1), "%)"),
+      paste(nrow(apache.t3), " (", round(nrow(apache.t3)/sumApache*100, digits=1), "%)"),
+      paste(nrow(apache.t4), " (", round(nrow(apache.t4)/sumApache*100, digits=1), "%)"),
+      chisqAll,
+      # Ends of first line about APache
+      # Line about netbeans
+      "Netbeans",
+      paste(nrow(netbeans.t1), " (", round(nrow(netbeans.t1)/sumNetbeans*100, digits=1), "%)"),
+      paste(nrow(netbeans.t2), " (", round(nrow(netbeans.t2)/sumNetbeans*100, digits=1), "%)"),
+      paste(nrow(netbeans.t3), " (", round(nrow(netbeans.t3)/sumNetbeans*100, digits=1), "%)"),
+      paste(nrow(netbeans.t4), " (", round(nrow(netbeans.t4)/sumNetbeans*100, digits=1), "%)"),
+      chisqAll,
+      # Ends of first line about netbeans
+      # Line about overall
+      "Overall",
+      paste(nrow(all.t1), " (", round(nrow(all.t1)/sumAll*100, digits=1), "%)"),
+      paste(nrow(all.t2), " (", round(nrow(all.t2)/sumAll*100, digits=1), "%)"),
+      paste(nrow(all.t3), " (", round(nrow(all.t3)/sumAll*100, digits=1), "%)"),
+      paste(nrow(all.t4), " (", round(nrow(all.t4)/sumAll*100, digits=1), "%)"),
+      chisqAll,
+      # Ends of first line about overall
+      # Heads line combining
+      "Ecosystem", "T1T2", "", "T3T4", "", "chisq",
+      #Combined APache
+      "Apache",
+      paste(nrow(apache.t1t2), " (", round(nrow(apache.t1t2)/sumApache*100, digits=1), "%)"), "",
+      paste(nrow(apache.t3t4), " (", round(nrow(apache.t3t4)/sumApache*100, digits=1), "%)"), "",
+      chisqCombined,
+      # Ends of first line about APache
+      #Combined Netbeans
+      "Netbeans",
+      paste(nrow(netbeans.t1t2), " (", round(nrow(netbeans.t1t2)/sumNetbeans*100, digits=1), "%)"), "",
+      paste(nrow(netbeans.t3t4), " (", round(nrow(netbeans.t3t4)/sumNetbeans*100, digits=1), "%)"), "",
+      chisqCombined,
+      # Ends of first line about Netbeans
+      #Combined All
+      "All",
+      paste(nrow(all.t1t2), " (", round(nrow(all.t1t2)/sumAll*100, digits=1), "%)"), "",
+      paste(nrow(all.t3t4), " (", round(nrow(all.t3t4)/sumAll*100, digits=1), "%)"), "",
+      chisqCombined,
+      # Ends of first line about All
+      # Heads line combining
+      "Ecosystem", "T1T3", "", "T2T4", "", "chisq",
+      #Combined APache
+      "Apache",
+      paste(nrow(apache.t1t3), " (", round(nrow(apache.t1t3)/sumApache*100, digits=1), "%)"), "",
+      paste(nrow(apache.t2t4), " (", round(nrow(apache.t2t4)/sumApache*100, digits=1), "%)"), "",
+      chisqCombinedTwo,
+      # Ends of first line about APache
+      #Combined Netbeans
+      "Netbeans",
+      paste(nrow(netbeans.t1t3), " (", round(nrow(netbeans.t1t3)/sumNetbeans*100, digits=1), "%)"), "",
+      paste(nrow(netbeans.t2t4), " (", round(nrow(netbeans.t2t4)/sumNetbeans*100, digits=1), "%)"), "",
+      chisqCombinedTwo,
+      # Ends of first line about Netbeans
+      #Combined All
+      "All",
+      paste(nrow(all.t1t3), " (", round(nrow(all.t1t3)/sumAll*100, digits=1), "%)"), "",
+      paste(nrow(all.t2t4), " (", round(nrow(all.t2t4)/sumAll*100, digits=1), "%)"), "",
+      chisqCombinedTwo
+      # Ends of first line about All
+    ),
+    nrow=12,
+    ncol=6,
+    byrow=TRUE
+  )
+
+  write.table(rqOneMatrix, file="rqOneMatrix.csv", quote = FALSE, sep = ";", row.names = FALSE,col.names = FALSE)
+  print(rqOneMatrix)
+}
+
 #Builds the results matrixes
-buildResultMatrix <- function(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rHunks,rChurns){
+buildRQTwoMatrix <- function(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rHunks,rChurns){
+
 
   matrix <- matrix(
-    c("Ecosys","Types","Metric","μ", "∑", "x", "σX", "%","T1","T2","T3","T4", "p-mean", "p-sum"),
+    c("Ecosys","Types","Metric","μ", "∑", "x", "σX", "%","T1","T2","T3","T4"),
     nrow=109,
-    ncol=14,
+    ncol=12,
     byrow = TRUE
   )
 
   matrixCombined <- matrix(
-    c("Ecosys", "metric", "t1t2", "","","","", "t3t4", "","","","", "wilcox", "p-mean chisq", "p-mean sum", #15
-      "", "", "μ", "∑", "x", "σX", "%", "μ", "∑", "x", "σX", "%", "", "", ""
+    c("Ecosys", "metric", "t1t2", "","","","", "t3t4", "","","","", "wilcox",  #15
+      "", "", "μ", "∑", "x", "σX", "%", "μ", "∑", "x", "σX", "%", ""
     ),
     nrow=30,
-    ncol=15,
+    ncol=13,
+    byrow=TRUE
+  )
+
+  matrixCombinedTwo <- matrix(
+    c("Ecosys", "metric", "t1t3", "","","","", "t2t4", "","","","", "wilcox",  #15
+      "", "", "μ", "∑", "x", "σX", "%", "μ", "∑", "x", "σX", "%", ""
+    ),
+    nrow=30,
+    ncol=13,
+    byrow=TRUE
+  )
+
+  matrixChisq <- matrix(
+    c("Ecosys", "metric", "p-value all", "p-value t1t2 vs t3t4", "p-value t1t3 vs t2t4"),
+    nrow=28,
+    ncol=5,
     byrow=TRUE
   )
 
@@ -272,9 +414,6 @@ buildResultMatrix <- function(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rH
 
   for(dataset in datasets) {
 
-    #nWilcox$descriptiveStats$ct1t2
-    #nWilcox$t1t2vt3t4$p.mean
-
     currMetricName <- 0
 
     for (metric in metrics) {
@@ -282,6 +421,16 @@ buildResultMatrix <- function(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rH
       currCombinedRow <- currCombinedRow + 1
       currMetricName <- currMetricName + 1
 
+      # Generate table of chi-square tests for all combination
+      matrixChisq[currCombinedRow-1, ] = c(
+        dataset,
+        metricsName[currMetricName],
+        eval(parse(text=paste("effectSizeValue(", metric, "$chisq.sum)", sep = ""))),
+        eval(parse(text=paste("effectSizeValue(", metric, "$chisq.cumul.sum)", sep = ""))),
+        eval(parse(text=paste("effectSizeValue(", metric, "$chisq.cumul.two.sum)", sep = "")))
+      )
+
+      #Generate comparative table for t1t2 v. t3t4
       matrixCombined[currCombinedRow, ] = c(
         dataset,
         metricsName[currMetricName],
@@ -295,10 +444,26 @@ buildResultMatrix <- function(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rH
         eval(parse(text=evalDescriptiveMetric(metric, "median", dataset, "3t4"))),
         eval(parse(text=evalDescriptiveMetric(metric, "std", dataset, "3t4"))),
         eval(parse(text=evalDescriptiveMetric(metric, "perc", dataset, "3t4"))),
-        eval(parse(text=evalQuantitativeMetric(metric, "1t2v", "3t4", dataset))),
-        eval(parse(text=paste("effectSizeValue(", metric, "$chisq.cumul.mean)", sep = ""))),
-        eval(parse(text=paste("effectSizeValue(", metric, "$chisq.cumul.sum)", sep = "")))
+        eval(parse(text=evalQuantitativeMetric(metric, "1t2v", "3t4", dataset)))
       )
+
+      #Generate comparative table for t1t3 v. t2t4
+      matrixCombinedTwo[currCombinedRow, ] = c(
+        dataset,
+        metricsName[currMetricName],
+        eval(parse(text=evalDescriptiveMetric(metric, "mean", dataset, "1t3"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "sum", dataset, "1t3"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "median", dataset, "1t3"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "std", dataset, "1t3"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "perc", dataset, "1t3"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "mean", dataset, "2t4"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "sum", dataset, "2t4"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "median", dataset, "2t4"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "std", dataset, "2t4"))),
+        eval(parse(text=evalDescriptiveMetric(metric, "perc", dataset, "2t4"))),
+        eval(parse(text=evalQuantitativeMetric(metric, "1t3v", "2t4", dataset)))
+      )
+
     }
 
     for(type in types) {
@@ -310,6 +475,7 @@ buildResultMatrix <- function(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rH
           currRow <- currRow + 1
           currMetricName <- currMetricName + 1
 
+          #Generate the comparative table for each type
           matrix[currRow, ] = c(
             dataset,
             paste("T", type, sep=""),
@@ -322,26 +488,30 @@ buildResultMatrix <- function(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rH
             eval(parse(text=evalQuantitativeMetric(metric, type, 1, dataset))),
             eval(parse(text=evalQuantitativeMetric(metric, type, 2, dataset))),
             eval(parse(text=evalQuantitativeMetric(metric, type, 3, dataset))),
-            eval(parse(text=evalQuantitativeMetric(metric, type, 4, dataset))),
-            eval(parse(text=paste("effectSizeValue(", metric, "$chisq.mean)", sep = ""))),
-            eval(parse(text=paste("effectSizeValue(", metric, "$chisq.sum)", sep = "")))
+            eval(parse(text=evalQuantitativeMetric(metric, type, 4, dataset)))
           )
       }
     }
-
-
   }
 
+  #Write the results to csv
   write.table(matrix, file="result.csv", quote = FALSE, sep = ";", row.names = FALSE,col.names = FALSE)
 
   write.table(matrixCombined, file="resultCombined.csv", quote = FALSE, sep = ";", row.names = FALSE,col.names = FALSE)
 
+  write.table(matrixCombinedTwo, file="resultCombinedTwo.csv", quote = FALSE, sep = ";", row.names = FALSE,col.names = FALSE)
+
+  write.table(matrixChisq, file="resultChisq.csv", quote = FALSE, sep = ";", row.names = FALSE,col.names = FALSE)
+
+  #Print the results to the consol
   print(matrix)
   print(matrixCombined)
-
+  print(matrixCombinedTwo)
+  print(matrixChisq)
 
 }
 
+buildRQOneMatrix()
 
 
 rDup <- statsTest("DUPLICATE_BY")
@@ -363,7 +533,7 @@ print("HUNKS")
 rChurns <- statsTest("CHURNS")
 print("CHURNS")
 
-buildResultMatrix(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rHunks,rChurns)
+buildRQTwoMatrix(rDup,rTime,rCom,rReop,rFiles,rSeverity, rChange,rHunks,rChurns)
 
 print(paste(round(stats.sig/(stats.sig+stats.unsig)*100, digits=2), "% statistically significant (", stats.sig/4, "/", (stats.unsig+stats.sig)/4, ")",sep=""))
 

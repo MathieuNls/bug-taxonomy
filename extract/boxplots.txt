@@ -1,0 +1,12 @@
+"T1"[a] "T2"[a] "T3"[a] "T4"[a] "T1"[n] "T2"[n] "T3"[n] "T4"[n]
+min                  0       0       0       0     1.0     1.0       0       0
+lower quartile       0       1       0       0     2.0     3.0       2       3
+median               4       8       1       4    10.0    16.0       9      13
+upper quartile      40      69       8      23    77.5    87.5      63      86
+max                100     171      20      57   183.0   210.0     154     210
+                T1  T2  T3  T4
+min              0   0   0   0
+lower quartile   1   1   1   2
+median           6   9   6   9
+upper quartile  49  72  41  61
+max            121 178 101 149

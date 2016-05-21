@@ -146,7 +146,110 @@ hypothesis $H_{02D}$ (respectively $H_{02R}$ ) and $H_{02S}$. The results of Pea
 statistically significant at $\alpha$ = 0.05.
 If a p-value $\le$ 0.05, we reject the null hypothesis $H_{02D}$ (respectively $H_{02R}$) andconclude the fact that the bug is more likely to be duplicated (respectively reopened) is related to the type of the bug and we reject $H_{02S}$ and conclude that the severity level of the bug is related to the bug type.
 
+\section{Analysis of the Results}
+
+
+
+This section reports the analysis of the results achieved
+aiming at answering our two research questions.
+
+\subsection{What are the proportions of different types of bugs?}
+
+\input{tabs/bugProportion}
+
+Table \ref{tab:contingency-table} presents a contingency table and the results of the Pearson's chi-squared tests we performed on each types of bug.
+In addition to presenting bug types 1 to 4,  Table \ref{tab:contingency-table} also presents regroupement of bug types:
+(a) Types 1 and 2 versus Types 3 and 4 and (b) Types 1 and 3 versus Types 2 and 4.
+
+
+Types 3 (22.6\% and 54\%) and 4 (31.3\% and 64.9\%) are predominants compared to types 1 (14.3\% and 9.1\%) and 2 (6.8\% and 3.7\%) for the Apache and the Netbeans ecosystems, respectively.
+Obviously, this observation also holds for when the two ecosystems are combined.
+Overall, the proportion of different types of bug is as follows: 6.8\%, 3.7\%, 28.3\%, 61.2\% for types 1, 2, 3 and 4, respectively.
+The result of the Pearson's tests are bellow 0.01.
+As a reminder, we consider results of Pearson's tests statistically significant at $\alpha \textless0.05$.
+Consequently, we can conclude that there is a predominance of Types 3 and 4 in all different ecosystems and this observation is not related to a specific ecosystem.
+When combined into our first group, Types 1 \& 2 versus. Types 3 \& 4, there are significantly more Types 3 and 4 (89.5 \%) than Types 1 and 2 (10.5 \%).
+In the second group, Types 1 \& 3 versus. Types 2 \& 4, there are significantly more Types 2 \& and 4 (64.9\%) than Types 1 \& 3 (35.1\%).
+
+
+
+\subsection{How complex is each type of bugs?}
+
+To answer {\bf RQ$_2$}, we analyse the complexity of each bug in terms of duplication, fixing time, comments, reopenning, files impacted, severity, changesets, hunks and chunks.
+
+Figure \ref{fig:boxplots} presents nine boxplots describing our complexity metric for each types of each ecosystem.
+In each sub-figure, the boxplots are organised as follows: (a) Types 1 to 4 of the Apache ecosystem, (b) Types 1 to 4 of the Netbeans ecosystem and (c) Types 1 to 4 of both ecosystems combined.
+For all the metrics, except the severity, the median is close to zero and we can observe many outliers.
+Tables \ref{tab:apache-eco}, \ref{tab:netbeans-eco} and \ref{tab:overall-eco} present descriptive statistics about each metric for each type for the Apache ecosystem, the Netbeans ecosystem and both ecosystems combined, respectively.
+The descriptive Statistics used are $\mu$:mean, $\sum$:sum, $\hat{x}$:median, $\sigma$:standard deviation and $\%$:percentage.
+In addition, to the descriptive statistics, these tables present matrixes of Mann-Whitney test for each metric and type.
+We added the \checkmark~symbol to the Mann-Whitney test results columns when the value is statistically significant (e.g. $\alpha \textless 0.05$) and \xmark~otherwise.
+Tables \ref{tab:combined-one} and \ref{tab:combined-two} are built similarly to Tables \ref{tab:apache-eco}, \ref{tab:netbeans-eco} and \ref{tab:overall-eco} at the exception that they present the data of types groups: Types 1 \& 2 vs. Types 3 \& 4 and Types 1 \& 3 vs. Types 2 \& 4.
+Finally, Table \ref{tab:chi-rq2} presents the Pearson's chi-squared tests results for each complexity metrics for Types 1 to 4 and our two types combination.
+In what follows, we present our findings for each complexity metric.
+omplexity metrics are divided in two groups: (a) process and (b) code metrics.
+Process metrics refer to metrics that have been extracted from the project tracking system (i.e. fixing time, comments, reopening and severity).
+Code metrics are directly computed using the source code used to fix a given bug (i.e. files impacted, changesets required, hunks and chunks).
+We acknowledge that these complexity metrics only represent an abstraction of the actual complexity of a given bug as they cannot account for the actual thought processes and expertise required to craft a fix.
+However, we believe that they are an accurate abstraction.
+Moreover, they are used in several studies in the field also rely on these metrics to accurately approximate the complexity of bug \cite{Weiß2007,Saha2014,Nam2013,Anvik2006,Nagappan}.
+
+\begin{figure*}
+\centering
+\includegraphics[page=1, width=0.30\textwidth]{extract/Rplots}
+\includegraphics[page=2, width=0.30\textwidth]{extract/Rplots}
+\includegraphics[page=3, width=0.30\textwidth]{extract/Rplots} \\
+\includegraphics[page=4, width=0.30\textwidth]{extract/Rplots}
+\includegraphics[page=5, width=0.30\textwidth]{extract/Rplots}
+\includegraphics[page=6, width=0.30\textwidth]{extract/Rplots} \\
+\includegraphics[page=7, width=0.30\textwidth]{extract/Rplots}
+\includegraphics[page=8, width=0.30\textwidth]{extract/Rplots}
+\includegraphics[page=9, width=0.30\textwidth]{extract/Rplots}
+
+\caption{Complexity metrics boxplots. From left to right and top to bottom: Duplicate, Fixing time, Comments, Reopening, Files impacted, Severity, Changesets, Hunks and Chunks.
+\label{fig:boxplots}}
+
+\end{figure*}
+
+
+\subsubsection{Duplicate}
+The duplicate metric represents the number of time a bug gets resolved using the {\it duplicate} label while referencing one of the {\it resolved/fixed} bug of our dataset.
+The process metric is useful to approximate the impact of a given bug on the community.
+Indeed, for a bug to be resolved using the {\it duplicate}, it means that the bug has been reported before.
+The more a bug gets reported by the community, the more people are impacted enough to report it.
+Note that, for a bug$_a$ to be resolved using the {\it duplicate} label and referencing bug$_b$, bug$_b$ does not have to resolved itself.
+Indeed, bug$_b$ could be under investigation (i.e. {\it unconfirmed}) or being fixed (i.e. {\it new} or {\it assigned}).
+
+In the Apache ecosystem, the types that are the most likely to get duplicated, ordered by ascending mean duplication rate, are T3 (0.016) $\textless$ T2 (0.022) $\textless$ T1 (0.026) $\textless$ T4 (0.029) and they represent 14.8\%, 8.1\%, 14.5\% and 62.6\% of the total duplications, respectively.
+The differences between duplication means by types, however, are only significant in 33.33\% (4/12) of the case.
+Indeed, the mean duplication are only significant on the following cases: T1 vs. T3, T3 vs. T4.
+For the Apache ecosystem, we can conclude that $T4_{dup}^1 \gg T1_{dup}^2 \gg T3_{dup}^4$.
+We use the notation  $x_{m}^r \gg y_{m}^r$ ($x_{m}^r \ll y_{m}^r$) to represent that $x$, along the metric $m$, is significantly greater (lower) than $y$, along the same metric, according to the mann-whitney tests ($\alpha \textless 0.05$).
+$r$ represents the rank of $x$ ($y$) according to $m$ from 1 (higher percentage) to 4 (lower percentage).
+
+
+
+
+
+Netbeans T1 0.086 (2.5\%) T2 0.067 (0.6\%) T3 0.074 (23.3\%) T4 0.113 (73.6\%)
+
+Overall T1 0.043 (3.9\%) T2 0.03 (1.5\%) T3 0.058 (22.3\%) T4 0.088 (72.3\%)
+
+\subsubsection{Fixing time}
+\subsubsection{Comments}
+\subsubsection{Reopening}
+\subsubsection{Severity}
+\subsubsection{Files impacted}
+\subsubsection{Changesets}
+\subsubsection{Hunks}
+\subsubsection{Chunks}
+
+
+
+
 \input{tabs/apache-types}
 \input{tabs/netbeans-types}
 \input{tabs/overall-types}
 \input{tabs/combined}
+\input{tabs/combinedTwo}
+\input{tabs/chisq}
