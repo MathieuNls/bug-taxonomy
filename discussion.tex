@@ -1,0 +1,108 @@
+
+\section{Dicussion}
+
+{\bf Repartition of bug types}: One important finding of this
+study is that there is significantly more Types 2 and 4 bugs
+than Types 1 and 3 in all studied systems. Moreover, this
+observation is not system-specific. The traditional one-bug/
+one-fault way of thinking about bugs only accounts for 35\%
+of the bugs. We believe that, recent triaging algorithms
+\cite{Jalbert2008,Jeong2009,Khomh2011a,Tamrawi2011a} can benefit from these findings by developing
+techniques that can detect Type 2 and 4 bugs. This would
+result in better performance in terms of reducing the cost,
+time and efforts required by the developers in the bug fixing
+process.
+
+{\bf Severity of bugs}: We discussed the severity and the
+complexity of a bug in terms of its likelihood to be reopened
+or marked as duplicate (RQ2). Although clear guidelines exist
+on how to assign the severity of a bug, it remains a manual
+process done by the bug reporter. In addition, previous
+studies, notably those by Khomh et al. \cite{Khomh2011a}, showed that severity is not a consistent/trustworthy characteristic of a BR,
+which lead to he emergence of studies for predicting the
+severity of bugs (e.g., \cite{Lamkanfi2010,Lamkanfi2011,Tian2012}). Nevertheless, we
+discovered that there is a significant difference between the
+severities of Types 1 and 3 compared to Types 2 and 4.
+
+{\bf Complexity of bugs}: At the complexity level, we use the
+number of times a bug is reopened as a measure of
+complexity. Indeed, if a developer is confident enough in
+his/her fix to close the bug and that the bug gets reopened it
+means that the developer missed some dependencies of the
+said bug or did not foresee the consequences of the fix.
+We found that there is a significant relationship between
+the number of reopenings and type of a bug. In other words,
+there is a significant relationship between the complexity and
+the type of a given bug. In our datasets, Types 1 and 3 bugs
+are reopened in 1.88\% of the cases, while Types 2 and 4 are
+reopened in 5.73\%. Assuming that the reopening is a
+representative metric for the complexity of bug, Types 2 and
+4 are three times more complex than Types 1 and 3. Finally, if
+we consider multiple reopenings, Types 2 and 4 account for
+almost 80\% of the bugs that reopened more than once and
+more than 96\% of the bug opened more than twice.
+While current approaches aiming to predict which bug
+will be reopen use the amount of modified files \cite{Shihab2010,Zimmermann2012,Lo2013}, we
+believe that they can be improved by taking into account the type of a the bug. For example, if we can detect that an
+incoming bug if of Type 2 or 4 then it is more likely to
+reopened than a bug of Type 1 or 3. Similarly, approaches
+aiming to predict the files in which a given bug should be
+fixed could be categorized and improved by knowking the
+bug type in advance \cite{Zhou2012,Kim2013a}.
+
+{\bf Impact of a bug}: To measure the impact of bugs in end-users
+and developers, we use the number of times a bug is
+duplicated. This is because if a bug has many duplicates, it
+means that a large number of users have experienced and a
+large number of developers are blocked the failure.
+We found that there is a significant relationship between
+the bug type and the fact that it gets duplicated. Types 1 and 3
+bugs are duplicated in 1.41\% of the cases while Types 2 and 4
+are duplicated in 3.14\%. Assuming that the amount of
+duplication is an accurate metric for the impact of bug, Types
+2 and 4 have more than two times bigger impact than Types 1
+and 3. Similarly to reopening, if we consider multiple
+duplication, Types 2 and 4 account for 75\% of the bugs that
+get duplicated more than once and more than 80\% of the bugs
+that get duplicated more than twice.
+We believe that approaches targeting the identification of
+duplicates \cite{Bettenburg2008a,Jalbert2008,Sun2010,Tian2012a}  could leverage this taxonomy to
+achieve even better performances in terms of recall and
+precision.
+
+{\bf Fixing time}: Our third research question aimed to determine
+if the type of a bug impacts its fixing time. Not only we found
+that the type of a bug does significantly impact its fixing time,
+but we also found that, in average Types 2 and 4, stay open
+111.26 days while Types 1 and 3 last for 77.36 days. Types 2
+and 4 are 1.4 time longer to fix than Types 1 and 3.We
+therefore believe that, approaches aiming to predict the fixing
+time of a bug (e.g., \cite{Panjer2007,Bhattacharya2011,Zhang2013}) can highly benefit from
+accurately predicting the type of a bug and thereforebetter
+plan the required man-power to fix the bug.
+In summary, Types 2 and 4 account for 65\% of the bugs
+and they are more complex, have a bigger impact and take
+longer to be fixed than Types 1 and 3 while being equivalent
+in terms of severity.
+
+Our taxonomy aimed to analyse: (1) the
+proportion of each type of bugs; (2) the complexity of each
+type in terms of severity, reopening and duplication; (3) the
+required time to fix a bug depending on its type. The key
+findings are:
+\begin{itemize}
+  \item Types 2 and 4 account for 65\% of the bugs.
+  \item Types 2 and 4 have a similar severity compared to
+Types 1 and 3.
+  \item Types 2 and 4 are more complex (reopening) and have
+a bigger impact (duplicate) than Types 1 and 3.
+  \item It takes more time to fix Types 2 and 4 than Types 1
+and 3.
+\end{itemize}
+
+Our taxonomy and results can be built upon in order to classify
+past and new researches in several active areas such as bug
+reproduction and triaging, prediction of reopening,
+duplication, severity, files to fix and fixing time. Moreover, if
+one could predict the type of a bug at submission time, all
+these areas could be improved.
