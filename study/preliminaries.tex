@@ -1,30 +1,5 @@
+%!TEX root = ../bug-taxo.tex
 
-\section{Preliminaries\label{sec:preliminaries}}
-
-Software maintenance, comprehension, evolution, specifications and testing are research areas overlapping each other in terms of terminology.
-
-In this paper, we will use a precise set of definitions.
-We do not claim ownership of these definitions, they have been established using various resources \cite{Avizienis2004,Pratt2001,Burnstein2006,Radatz1990,Whittaker2012}.
-
-We limit software maintenance to the following three artifacts:
-
-\begin{itemize}
-	\item Bug report: A bug report describes a behavior observed in the field and considered abnormal by the reporter. Bug reports are submitted manually to bug report systems (bugzilla/jira). There is no mandatory format to report a bug, nevertheless, it should have: Version of the software / OS / Platform used, steps to reproduce, screen shots, stack trace and anything that could help a developer to assess the internal state of the software system.
-	\item Crash report: A crash report is the last action a software system does before crashing. Crash reports are automatic (they have to be implemented into the software system by developer) and contain data (that can be proprietary) to help developers understand the crash (e.g. memory dump,...).
-	\item Tasks: A task is a new feature, or the improvement of an existing feature, to be implemented in a future release of the software.
-\end{itemize}
-
-These artifacts are produced in response to the following phenomena:
-
-\begin{itemize}
-	\item Software Bug: A software bug is an error, flaw, failure, defect or fault in a computer program or system that causes it to violate at least one of its functional or nonfunctional requirements.
-	\item Error: An error is a mistake, misconception, or misunderstanding on the part of a software developer.
-	\item Fault/defect: A fault (defect) is defined as an abnormal condition or defect at the component, equipment, or subsystem level which may lead to a failure. A fault (defect) is not final (the system still works) and does not prevent a given feature to be accomplished.  A fault (defect) is a deviation (anomaly) of the healthy system that can be caused by an error or external factors (hardware, third parties, ...).
-	\item Failure: The inability of a software system or component to perform its required functions within specified requirements.
-	\item Crash: The software system encountered a fault (defect) that triggered a fatal failure from which the system could not recover from/overcome. As a result,  the system stopped.
-\end{itemize}
-
-In the remaining of this section, we introduce the two types of software repositories: version control and project tracking system.
 
 \subsection{Version control systems\label{sec:version-control}}
 
