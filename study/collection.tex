@@ -12,16 +12,16 @@ In order to assign commits to issues we used is the regular expression-based app
 Using this technique, we were able to link almost 40\% (40,493 out of 102,707) of our resolved/fixed issues to 229,153 commits.
 An issue can be fixed with several commits.
 
-We choose not to use more complex technics like ReLink, an approach proposed by Wu et al.\cite{Wu2011}, which considers the following constraints: (i) matching the committer/authors with issue tracking contributor name/email; (ii) the time interval between the commit and the last comment posted by the same author/contributor on the issue tracker must be less than seven days; and (iii) Vector Space Model (VSM) cosine similarity between the commit note and the last comment referred above or greater than 0.7 because we belive that mining more than forty thousands issues is enough to be significant.
+We choose not to use more complex technique like ReLink, an approach proposed by Wu et al.\cite{Wu2011}, which considers the following constraints: (i) matching the committer/authors with issue tracking contributor name/email; (ii) the time interval between the commit and the last comment posted by the same author/contributor on the issue tracker must be less than seven days; and (iii) Vector Space Model (VSM) cosine similarity between the commit note and the last comment referred above or greater than 0.7 because we belive that mining more than forty thousands issues is enough to be significant.
 
 Using our generated consolidated dataset, we extracted the files $f_i$ impacted by each commit $c_i$ for each one of our 388 projects.
 Then, we classify the bugs according to the following:
 
 \begin{itemize}
-  \item {\bf Type 1:} A bug is tagged type 1 if it is fixed by modifying a file $f_i$ and $f_i$ is not involved in any other bug fix.
-  \item {\bf Type 2:} A bug is tagged type 2 if it is fixed by modifying several files $f_{i..n}$ and the files $f_{i..n}$ are not involved in any other bug fix.
-  \item {\bf Type 3:} A bug is tagged type 3 if it is fixed by modifying a file $f_{i}$ and the file $f_{i}$ is involved in fixing other bugs.
-  \item {\bf Type 4:} A bug is tagged type 4 if it is fixed by modifying several files $f_{i..n}$ and the files $f_{i..n}$ are involved in any other bug fix.
+  \item {\bf Type 1:} A bug is tagged Type 1 if it is fixed by modifying a file $f_i$ and $f_i$ is not involved in any other bug fix.
+  \item {\bf Type 2:} A bug is tagged Type 2 if it is fixed by modifying several files $f_{i..n}$ and the files $f_{i..n}$ are not involved in any other bug fix.
+  \item {\bf Type 3:} A bug is tagged Type 3 if it is fixed by modifying a file $f_{i}$ and the file $f_{i}$ is involved in fixing other bugs.
+  \item {\bf Type 4:} A bug is tagged Type 4 if it is fixed by modifying several files $f_{i..n}$ and the files $f_{i..n}$ are involved in any other bug fix.
 \end{itemize}
 
 To answer this question, we analyze whether any type is predominant in the studied ecosystem, by testing the null hypothesis:
@@ -35,7 +35,7 @@ We test this hypothesis by observing both a ``global'' (across ecosystem) and a 
 We must observe these two aspects to ensure that the predominance of a particular type of bug is not circumstantial (in few given systems only) but is also not due to some other, unknown factors (in all systems but not in a particular ecosystem).
 
 We answer {\bf RQ$_1$} in two steps.
-The first step is to use descriptive statistics; we compute the ratio of each types to the total number of bugs in the dataset.
+The first step is to use descriptive statistics. We compute the ratio of each types to the total number of bugs in the dataset.
 
 In the second step, we compare the proportions of the different types of bugs with respect to the ecosystem where the bugs were found.
 We build the contingency table with these two qualitative variables (the type and studied ecosystem) and test the null hypothesis {\bf H$_{01A}$} to assess whether the proportion of a particular type of bugs is related to a specific ecosystem or not.
@@ -85,9 +85,4 @@ The results of Pearson's chi-squared independence tests are considered statistic
 If a p-value $\le$ 0.05, we reject the null hypothesis $H_{02}$ and conclude that the complexity of bug is related to its type.
 
 
-\subsubsection{How pertinent is a bug taxonomy?}
 
-We searched for papers published from 2013 to now that provide a reproduction package in the following venues and journals: International Conference on Software Engineering, Transaction on Software Engineering, Mining Software Repository and Empirical Software Engineering.
-Despite the recommendation by Godfrey {\it et al.} \cite{Godfrey2009}, very few papers include ways to reproduce their experiments.
-For the papers we could find with a reproduction package, we discarded those who were not in the following research areas: bug reproduction and triaging, prediction of reopening, duplication, severity, files to fix and fixing time.
-Finally, we reproduce their experiments, using their reproduction package modified to take into account our taxonomy.

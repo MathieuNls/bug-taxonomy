@@ -2,24 +2,20 @@
 
 \section{Study Design}
 
-The goal of this study is to analyze the location of bug fixes, with the purpose of classifying bug fixes into types.
-More specifically, this study aims to answer the following three research questions:
+The goal of this study is to analyse the location of bug fixes, with the purpose of classifying bug fixes into types.
+More specifically, this study aims to answer the following two research questions:
 
 \begin{itemize}
-	\item {\bf RQ$_1$:} {\it What are the proportions of different types of bugs?} This research question aims to what extent bug can be classified according to their fix-locations and the proportion of each types.
-  Specifically, we investigate if different types of bugs exists at all and if the proportion of different types in non-negligible.
-  As discussed ealier, knowing, for example, that bugs of Type 3 and 4 are the most predominant ones suggests that we need to investigate techniques to help detect whether an incoming bug is of Types 3 and 4 by examining historical data.
+	\item {\bf RQ$_1$:} {\it What are the proportions of different types of bugs?} This research question aims to identify the extent to which bugs can be classified according to their fix-locations and the proportion of each types.
+  Specifically, we investigate if different types of bugs exist at all and if the proportion of different types in non-negligible.
+  As discussed earlier [WAHAB: Please run a spell checker], knowing, for example, that bugs of Type 3 and 4 are the most predominant ones suggests that we need to investigate techniques to help detect whether an incoming bug is of Types 3 and 4 by examining historical data.
   Similarly, if we can automatically identify a bug that is related to another one that has been fixed then we can reuse the results of reproducing the first bug in reproducing the second one.
 
 	\item {\bf RQ$_2$:} {\it How complex is each type of bugs?} This second research question aims to investigate the complexity of the different types of bug.
-  More specifically, we analyze and discuss the complexity of different types of bugs using code and process metrics both.
+  More specifically, we analyse  the complexity of different types of bugs using code and process metrics both.
   For the code aspect of the complexity, we compute the number of different files impacted by the fix and the number of hunks and churns.
   We do not compute any statical complexity metrics such as cyclomatic complexity \cite{McCabe1989}.
-  For the process aspect of complexity, we analyze the severity of the bug, the amount of duplicate bug report submitted, the number of times a bug report gets reopened, the number of comments and the time required to fix the bug.
-
-	\item {\bf RQ$_3$:} {\it How pertinent is a bug taxonomy?} The third research question aims to investigate the usefulness of our proposed taxonomy.
-	More specifically, we re-run experiments published in recent papers while taking our proposed taxonomy into account.
-	Also, we want to know if our taxonomy and results can be built upon in order to classify past and new researches in several active areas such as bug reproduction and triaging, prediction of reopening, duplication, severity, files to fix and fixing time.
+  For the process aspect of complexity, we analyse the severity of a bug, the number of duplicate bug reports submitted, the number of times a bug report is reopened, the number of commits [WAHAB: Do you mean commits?], and the time required to fix the bug.
 
 
 \end{itemize}

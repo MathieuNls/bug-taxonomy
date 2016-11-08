@@ -5,24 +5,22 @@
 
 Version control consists of maintaining the versions of files --- such as source code and other software artifacts \cite{Zeller1997}.
 This activity is a complex task and cannot be performed manually on real world project.
-Consequently, numerous tools have been created to help practitioners manage the version of their software artifacts.
+To this end, numerous tools have been created to help practitioners manage the version of their software artifacts.
 Each evolution of a software is a version (or revision) and each version (revision) is linked to the one before through modifications of software artifacts.
-These modifications consist of updating, adding or deleting software artifacts.
+These modifications consist of updating, adding, or deleting software artifacts.
 They can be referred as \texttt{diff}, {\tt patch} or {\tt commit}\footnote{These names are not to be used interchangeably as difference exists.}.
 Each \texttt{diff}, {\tt patch} or {\tt commit} have the following characteristics:
 
 \begin{itemize}
-\item Number of Files: The number of software files that have been modified, added or deleted.
+\item Number of Files: The number of software files that have been modified, added, or deleted.
 \item Number of Hunks: The number of consecutive code blocks of modified, added or deleted lines in textual files. Hunks are used to determine, in each file, how many different places the developer has modified.
 \item Number of Churns:  The number of lines modified. However, the churn value for a line change should be at least two as the line has to be deleted first and then added back with the modifications.
 \end{itemize}
 
-In modern versioning systems, when maintainers make modifications to the source code want to version it, they have to do commit.
-The commit operation will version the modifications applied to one or many files.
 
 Figure \ref{fig:branching} presents the data structure used to store a commit.
 Each commit is represented as a tree.
-The root leaf (green) contains the commit, tree and parent hashes as same as the author and the description associated with the commit.
+The root leaf (green) contains the commit, tree and parent hashes as well as the author and the description associated with the commit.
 The second leaf (blue) contains the leaf hash and the hashes of the files of the project.
 
 \begin{figure}[h!]
@@ -89,6 +87,6 @@ The possible severities are:
 	\item trivial: cosmetic problems like misspelled words or misaligned text.
 \end{itemize}
 
-The relationship between an report or a task and the actual modification can be hard to establish and it has been a subject of various research studies (e.g., \cite{Antoniol2002,Bachmann2010,Wu2011}).
+The relationship between a report or a task and the actual modification can be hard to establish and has been a subject of various research studies (e.g., \cite{Antoniol2002,Bachmann2010,Wu2011}).
 This reason is that they are in two different systems: the version control system and the project tracking system.
 While it is considered a good practice to link each report with the versioning system by indicating the report $\#id$ on the modification message, more than half of the reports are not linked to a modification\cite{Wu2011}.
