@@ -1,8 +1,6 @@
-%!TEX root = ../bug-taxo.tex
+## Context Selection
 
-\subsection{Context Selection}
-
-The context of this study consists of the change history of 388 projects belonging to two software ecosystems, namely, Apache and Netbeans.
+The context of this study consists of the change history of 388 projects belonging to two software ecosystem, namely, Apache and Netbeans.
 Table \ref{table:datasets} reports, for each of them, (i) the number of projects analyzed, (ii) size ranges in terms of the number of classes and KLOC, (iii) the overall number of commits and issues analyzed, and (iv) the average, minimum, and maximum length of the projects' story (in years).
 
 \begin{table}[h]
@@ -20,9 +18,8 @@ Total            & 102,707         & 229,153     & 68,809         & 388         
 \end{table}
 
 
-
 All the analyzed projects are hosted in {\it Git} or {\it Mercurial} repositories and have either a {\it Jira} or a {\it Bugzilla} issue tracker associated with it.
-The Apache ecosystem consists of 349 projects written in various programming languages (C, C++, Java, Python, ...) and uses {\it Git} and {\it Jira}.
+The Apache ecosystem consists in 349 projects written in various programming languages (C, C++, Java, Python, ...) and uses {\it Git} and {\it Jira}.
 These projects represent the Apache ecosystem in its entirety; no system has been excluded from our study.
 The complete list can be found online\footnote{https://projects.apache.org/projects.html?name}.
 The Netbeans ecosystem consists in 39 projects, mostly written in Java.
@@ -30,8 +27,8 @@ Similarly to the Apache ecosystem, we did not select any of the projects belongi
 The Netbeans community uses {\it Bugzilla} and {\it Mercurial}.
 
 The choice of the ecosystems to analyze is not random, but rather driven by the motivation to consider projects having (i) different sizes, (ii) different architectures, and (iii) different development bases and processes.
-Indeed, Apache projects are extremely various in terms of size of the development team, purpose and technical choices \cite{Bavota2013}.
-On the other side, Netbeans has a relatively stable list of core developer and a common vision shared through the 39 related projects \cite{Wang2011}.
+Indeed, Apache projects are extremely various in terms of size of the development team, purpose and technical choices [@Bavota2013].
+On the other side, Netbeans has a relatively stable list of core developer and a common vision shared through the 39 related projects [@Wang2011].
 
 Cumulatively, these datasets span from 2001 to 2014. In summary, our consolidated dataset contains 102,707 bugs, 229,153 changesets, 68,809 files that have been modified to fix the bugs, 462,848 comments, and 388 distinct systems.
 We also collected 221 million lines of code modified to fix the bugs, identified 3,284 sub-projects, and 17,984 unique contributors to these bug report and source code version management systems.

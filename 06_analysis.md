@@ -1,6 +1,23 @@
-%!TEX root = ../../bug-taxo.tex
+## Analysis of the Results
 
-\subsection{How complex is each type of bugs?}
+This section reports the analysis of the results aiming at answering our three research questions.
+
+### What are the proportions of different types of bugs?
+
+\input{tex_tables/bugProportion}
+
+Table \ref{tab:contingency-table} presents a contingency table and the results of the Pearson's chi-squared tests we performed on each types of bug.
+In addition to presenting bug types 1 to 4,  Table \ref{tab:contingency-table} also presents grouping of bug types:
+Types 1 and 2 versus Types 3 and 4.
+
+Types 3 (22.6\% and 54\%) and 4 (31.3\% and 64.9\%) are predominant compared to types 1 (14.3\% and 9.1\%) and 2 (6.8\% and 3.7\%) for the Apache and the Netbeans ecosystems, respectively.
+Overall, the proportion of different types of bug is as follows: 6.8\%, 3.7\%, 28.3\%, 61.2\% for types 1, 2, 3 and 4, respectively.
+The result of the Pearson's test is below 0.01.
+As a reminder, we consider results of Pearson's tests statistically significant at $\alpha \textless0.05$.
+Consequently, we reject to null hypothesis $H_{01}$ and conclude that there is a predominance of Types 3 and 4 in all different ecosystems and this observation is not related to a specific ecosystem.
+When combined into our first group, Types 1 \& 2 versus Types 3 \& 4, there are significantly more Types 3 and 4 (89.5 \%) than Types 1 and 2 (10.5 \%).
+
+### How complex is each type of bugs?
 
 To answer {\bf RQ$_2$}, we analyze the complexity of each bug in terms of duplication, fixing time, comments, reopenning, files impacted, severity, changesets, hunks and chunks.
 
@@ -462,3 +479,5 @@ Out of our nine complexity metrics, the only one where Types 1 \& 2 perform {\it
 
 Consequently, we reject to null hypothesis $H_{02}$ and conclude that the complexity of bug is related to its type.
 Moreover, Types 3 and 4  bugs are more complex than Types 1 and 2 bugs across the ecosystems we studied.
+
+### Are bug types predictable at opening time?

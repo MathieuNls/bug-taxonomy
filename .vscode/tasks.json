@@ -1,0 +1,18 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "tasks": [
+        {
+            "taskName": "pandoc",
+            "command": "pandoc -s -S --filter pandoc-citeproc --number-sections --template='${workspaceRoot}/config/default.latex'",
+            "args": [
+                "-o ${workspaceRoot}/output.pdf",
+                "${workspaceRoot}/*.md"
+            ],
+            "isShellCommand": true,
+            "showOutput": "always",
+            "echoCommand": true
+        }
+    ]
+}

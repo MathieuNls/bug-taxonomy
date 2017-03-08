@@ -1,0 +1,47 @@
+\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{svjour3}
+\usepackage{listings}
+\usepackage[linesnumbered]{algorithm2e}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage{listings}
+
+$if(title)$
+\title{$title$}
+$endif$
+
+\author{ $for(author)$ $author.name$ $endfor$ }
+
+\institute{ $for(author)$ $author.name$ \at $author.affiliation$ \\ $author.location$ \\ \email{$author.email$} \\ $endfor$ }
+
+\date{$date$}
+
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\begin{document}
+$if(title)$
+\maketitle
+$endif$
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+
+
+$body$
+
+
+\end{document}
