@@ -5,8 +5,8 @@ This activity is a complex task and cannot be performed manually on real world p
 Consequently, numerous tools have been created to help practitioners manage the version of their software artifacts.
 Each evolution of a software is a version (or revision) and each version (revision) is linked to the one before through modifications of software artifacts.
 These modifications consist of updating, adding or deleting software artifacts.
-They can be referred as \texttt{diff}, {\tt patch} or {\tt commit}\footnote{These names are not to be used interchangeably as difference exists.}.
-Each \texttt{diff}, {\tt patch} or {\tt commit} have the following characteristics:
+They can be referred as diff, patch or commit\footnote{These names are not to be used interchangeably as difference exists.}.
+Each diff, patch or commit have the following characteristics:
 
 
 - Number of Files: The number of software files that have been modified, added or deleted.
@@ -28,7 +28,7 @@ The second leaf (blue) contains the leaf hash and the hashes of the files of the
     \label{fig:branching}}
 \end{figure}
 
-In this example, we can see that author ``Mathieu'' has created the file $file1.java$ with the message ``project init''.
+In this example, we can see that author "Mathieu" has created the file $file1.java$ with the message "project init".
 
 \subsection{Project Tracking Systems\label{sec:issue-tracking}}
 
@@ -44,30 +44,30 @@ These systems are also used by development teams to keep track of the modificati
 \end{figure}
 
 Figure \ref{fig:bug-lifecyle} presents the life cycle of a report.
-When a report is submitted by an end-user, it is set to the {\tt UNCONFIRMED} state until it receives enough votes or that a user with the proper permissions modifies its status to {\tt NEW}.
+When a report is submitted by an end-user, it is set to the *UNCONFIRMED* state until it receives enough votes or that a user with the proper permissions modifies its status to *NEW*.
 The report is then assigned to a developer to be fixed.
-When the report is in the {\tt ASSIGNED} state, the assigned developer(s) starts working on the report.
-A fixed report moves to the {\tt RESOLVED} state. Developers have five different possibilities to resolve a report: {\tt FIXED}, {\tt DUPLICATE}, {\tt WONTFIX}, {\tt WORKSFORME} and {\tt INVALID} [@Koponen2006].
+When the report is in the *ASSIGNED* state, the assigned developer(s) starts working on the report.
+A fixed report moves to the *RESOLVED* state. Developers have five different possibilities to resolve a report: *FIXED*, *DUPLICATE*, *WONTFIX*, *WORKSFORME* and *INVALID* [@Koponen2006].
 
 
-- {\tt RESOLVED/FIXED}: A modification to the source code has been pushed, i.e., a changeset (also called a patch) has been committed to the source code management system and fixes the root problem described in the report.
-- {\tt RESOLVED/DUPLICATE}: A previously submitted report is being processed. The report is marked as duplicate of the original report.
-- {\tt RESOLVED/WONTFIX}: This is applied in the case where developers decide that a given report will not be fixed.
-- {\tt RESOLVED/WORKSFORME}: If the root problem described in the report cannot be reproduced on the reported OS / hardware.
-- {\tt RESOLVED/INVALID}: If the report is not related to the software itself.
+- RESOLVED/FIXED: A modification to the source code has been pushed, i.e., a changeset (also called a patch) has been committed to the source code management system and fixes the root problem described in the report.
+- RESOLVED/DUPLICATE: A previously submitted report is being processed. The report is marked as duplicate of the original report.
+- RESOLVED/WONTFIX: This is applied in the case where developers decide that a given report will not be fixed.
+- RESOLVED/WORKSFORME: If the root problem described in the report cannot be reproduced on the reported OS / hardware.
+- RESOLVED/INVALID: If the report is not related to the software itself.
 
 
-Finally, the report is {\tt CLOSED} after it is resolved.
-A report can be reopened (sent to the {\tt REOPENED} state) and then assigned again if the initial fix was not adequate (the fix did not resolve the problem).
-The elapsed time between the report marked as the new one and the resolved status are known as the {\it fixing time}, usually in days.
+Finally, the report is *CLOSED* after it is resolved.
+A report can be reopened (sent to the *REOPENED* state) and then assigned again if the initial fix was not adequate (the fix did not resolve the problem).
+The elapsed time between the report marked as the new one and the resolved status are known as the *fixing time*, usually in days.
 In case of task branching, the branch associated with the report is marked as ready to be merged.
 Then, the person in charge (quality assurance team, manager, ect...) will be able to merge the branch with the mainline.
-If the report is reopened: the days between the time the report is reopened and the time it is marked again as {\tt RESOLVED/FIXED} are cumulated.
+If the report is reopened: the days between the time the report is reopened and the time it is marked again as *RESOLVED FIXED* are cumulated.
 Reports can be reopened many times.
 
-Tasks follow a similar life cycle with the exception of the {\tt UNCONFIRMED} and {\tt RESOLVED} states.
-Tasks are created by management and do not need to be confirmed in order to be {\tt OPEN} and {\tt ASSIGNED} to developers.
-When a task is complete, it will not go to the {\tt RESOLVED} state, but to the {\tt IMPLEMENTED} state.
+Tasks follow a similar life cycle with the exception of the *UNCONFIRMED* and *RESOLVED* states.
+Tasks are created by management and do not need to be confirmed in order to be *OPEN* and *ASSIGNED* to developers.
+When a task is complete, it will not go to the *RESOLVED* state, but to the *IMPLEMENTED* state.
 Bug and crash reports are considered as problems to eradicate in the program.
 Tasks are considered as new features or amelioration to include in the program.
 

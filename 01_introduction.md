@@ -33,20 +33,16 @@ We also conjecture that detecting such related bugs can help with other tasks su
 We can  reuse the reproduction of an already fixed bug to reproduce an incoming and related bug.
 
 Our aim is not to improve testing as it is the case in the work of Eldh [@Eldh2001] and Hamill et al. [@Hamill2014].
-Our objective is to propose a classification that can allow researchers in the filed of mining bug 9 repositiories to use the taxonomy as a new criterion in triaging, prediction, and reproduction of bugs.
+Our objective is to propose a classification that can allow researchers in the filed of mining bug repositories to use the taxonomy as a new criterion in triaging, prediction, and reproduction of bugs.
 By analogy, we can look at the proposed bug taxonomy in a similar way as the clone taxonomy presented by Kapser and Godfrey [@CoryKapser].
 The authors proposed seven types of source code clones and then conducted a case study, using their classification, on the file system module of the Linux operating system.
 This clone taxonomy continues to be used by researchers to build better approaches for detecting a given clone type and being able to effectively compare approaches with each other.
 
 We are interested in bugs that share similar fixes.
-By a fix, we mean a modification (adding or deleting lines of
-code) to an exiting file that is used to solve the bug. With this
-in mind, the relationship between bugs and fixes can be
-modeled using the UML diagram in Figure \ref{fig:bug-taxo-diag}. The diagram
-only includes bugs that are fixed. From this figure, we can
-think of four instances of this diagram, which we refer to as
-bug taxonomy or simply bug types (see Figure \ref{fig:bug-taxo}).
-
+By a fix, we mean a modification (adding or deleting lines of code) to an exiting file that is used to solve the bug. 
+With this in mind, the relationship between bugs and fixes can be modeled using the UML diagram in Figure \ref{fig:bug-taxo-diag}. 
+The diagram only includes bugs that are fixed. 
+From this figure, we can think of four instances of this diagram, which we refer to as bug taxonomy or simply bug types (see Figure \ref{fig:bug-taxo}).
 
 \begin{figure}[h!]
   \centering
@@ -64,8 +60,7 @@ bug taxonomy or simply bug types (see Figure \ref{fig:bug-taxo}).
 \end{figure}
 
 
-The first and second types are the ones we intuitively know
-about.
+The first and second types are the ones we intuitively know about.
 Type 1 refers to a bug being fixed in one single location (i.e., one file), while Type 2 refers to bugs being fixed in more than one location.
 In Figure 2, only two locations are shown for the sake of clarity, but many more locations could be involved in the fix of a bug.
 Type 3 refers to multiple bugs that are fixed in the exact same location.

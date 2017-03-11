@@ -1,14 +1,29 @@
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{svjour3}
+
+
+\usepackage[table]{xcolor}
 \usepackage{listings}
 \usepackage[linesnumbered]{algorithm2e}
 \usepackage[utf8]{inputenc}
 \usepackage{multirow}
-\usepackage{color}
 \usepackage{pgfplots}
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{fixltx2e} % provides \textsubscript
 \usepackage{listings}
+\usepackage[pdfstartview=FitH]{hyperref}
+\usepackage{bookmark}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\usepackage[toc,page,title,titletoc]{appendix}
+\usepackage{longtable}
+\usepackage{cite}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+    
 
 $if(title)$
 \title{$title$}
@@ -16,7 +31,7 @@ $endif$
 
 \author{ $for(author)$ $author.name$ $endfor$ }
 
-\institute{ $for(author)$ $author.name$ \at $author.affiliation$ \\ $author.location$ \\ \email{$author.email$} \\ $endfor$ }
+\institute{ $for(author)$ $author.name$ \at $author.affiliation$ \\ $author.location$ \\ \email{$author.email$} \\ \\ $endfor$ }
 
 \date{$date$}
 

@@ -18,4 +18,3 @@ author:
   email: \{alf.larsson, sigrid.eldh\}\@ericsson.com
 ---
 
-blafdfassf

@@ -40,3 +40,28 @@ plan the required man-power to fix the bug.
 
 
 ## RQ$_3$: Are bug types predictable at opening time?
+
+In this study, we showed that different bug types exist and their complexity differ.
+Being able to identify the complexity of a fix linked to a bug report is an important tasks as an accurate prediction can lead to improvements in the organization.
+Indeed, more complex reports can be assigned to experienced developers for example.
+This issue have been explored by researchers by predicting the severity of a report [@Lamkanfi2010; @Tian2012; @Lamkanfi2011].
+As discussed in section \ref{sec:issue-tracking}, the severity attribute of a report has not been designed to show complexity but perceived impact on the product. 
+Indeed the different severities (blocker, critical, major, normal, minor, trivial) refers, for example, to loss of functionalities or blockages in the development process.
+They do not link to how complex a bug is to fix.
+Other approaches have focused on predicting how long it will take to fix a bug [@Weiß2007; @Bhattacharya2011] and the fixing time of a bug can be seen as a reflection of its complexity.
+However, Saha *et al.* found that the fixes for bug that stayed open more than a year tend to be simple ones [@Saha2014]. 
+The reason why these bugs stayed open such a long time is not often clear.
+
+We tackle the complexity of a bug by introducing a new notion, its type.
+Predicting the type at opening time can greatly benefit many research fields revolving around bug tracking system and enhancing software quality in general.
+For example, bug types can be linked to significantly different severity, time to fix, reopening and duplication.
+These factor can improve bug triaging by assigning complex type to experienced developers.
+
+In addition, accurately predicting the bug type can be benefic to approaches searching to identify the fix location.
+Most of these approaches work as a recommendation system where the developers is presented with a list of files that potentially have to be fixed in order to resolve the bug. 
+We believe that the performances and helpfulness of these approaches for the developers could be greatly improve if they relied on bug type we proposed.
+Indeed, they could, in addition to propose a list of files that likely require a fix, they could propose to the developers a list of a file and an indication of how many of these files need to be fixed.
+It will be one for type 1 and 3 and more than one for types 2 and 4.
+
+To conclude, we believe that they are several advantages for different fields in predicting bug type and we took a step in that direction with this paper by accurately predicting the most complex type: Type 4.
+

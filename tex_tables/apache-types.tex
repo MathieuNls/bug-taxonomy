@@ -1,11 +1,10 @@
 
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
-\begin{table*}[]
+\begin{table}[]
 \centering
 \small
-\caption{Apache Ecosystem Complexity Metrics Comparison and Mann-whitney test results. \\ $\mu$:mean, $\sum$:sum, $\hat{x}$:median, $\sigma$:standard deviation, $\%$:percentage}
+\caption{Apache Ecosystem Complexity Metrics Comparison and Mann-whitney test results. \hspace{\textwidth} $\mu$:mean, $\sum$:sum, $\hat{x}$:median, $\sigma$:standard deviation, $\%$:percentage}
 \label{tab:apache-eco}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{ccccccc|ccccc}
 
 Types & Metric &$\mu$ & $\sum$ & $\hat{x}$ & $\sigma$ & $\%$ & T1 & T2 & T3 & T4 \\ \hline \rowcolor{gray!25}
@@ -53,4 +52,5 @@ T4 & Fil. & 5.633 & 41805 & 3 & 14 & 79.9 & \checkmark  (\textless 0.05) & \chec
 & Chur. & 27249.773 & 202247816 & 204 & 320023.5 & 91.9 & \checkmark  (\textless 0.05) & \checkmark  (\textless 0.05) & \checkmark  (\textless 0.05) & n.a
 
 \end{tabular}%
-\end{table*}
+}
+\end{table}

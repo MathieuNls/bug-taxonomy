@@ -5,11 +5,11 @@ This subsection describes the data extraction and analysis process that we follo
 
 ### What are the proportions of different types of bugs? 
 
-To answer **RQ$_1$**, we cloned the 349 {\it git} repositories belonging to the Apache ecosystem and the 39 {\it mercurial} repositories belonging to the Netbeans ecosystem.
+To answer **RQ$_1$**, we cloned the 349 *git* repositories belonging to the Apache ecosystem and the 39 *mercurial* repositories belonging to the Netbeans ecosystem.
 The raw size of the cloned source code alone, excluding binaries, images and other non-text file, is 163 GB.
-Then, we extracted all the 102,707 closed issues that have been resolved using the {\it RESOLVED/FIXED} tags.
+Then, we extracted all the 102,707 closed issues that have been resolved using the *RESOLVED FIXED* tags.
 Indeed, this study aims to classify bugs according to their fix locations.
-If an issue is fixed by other means than {\it fixing} the source code, then, it falls outside the scope our study.
+If an issue is fixed by other means than *fixing* the source code, then, it falls outside the scope our study.
 In order to assign commits to issues we used is the regular expression-based approach by Fischer et al. [@Fischer] matching the issue ID in the commit note.
 Using this technique, we were able to link almost 40\% (40,493 out of 102,707) of our resolved/fixed issues to 229,153 commits.
 An issue can be fixed with several commits.
@@ -96,3 +96,4 @@ We analyze whether bug types are predictable by testing the null hypothesis:
 - $H_{03}$:  Bug types classifiers are not accurate.
 
 To test our hypothesis, we predict the bug type of the most complex type, according to **RQ$_2$**, in ten different projects.
+The results of the prediction tests are considered pertinent if they significantly improve upon a random classifier.

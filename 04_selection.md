@@ -18,13 +18,13 @@ Total            & 102,707         & 229,153     & 68,809         & 388         
 \end{table}
 
 
-All the analyzed projects are hosted in {\it Git} or {\it Mercurial} repositories and have either a {\it Jira} or a {\it Bugzilla} issue tracker associated with it.
-The Apache ecosystem consists in 349 projects written in various programming languages (C, C++, Java, Python, ...) and uses {\it Git} and {\it Jira}.
+All the analyzed projects are hosted in *Git* or *Mercurial* repositories and have either a *Jira* or a *Bugzilla* issue tracker associated with it.
+The Apache ecosystem consists in 349 projects written in various programming languages (C, C++, Java, Python, ...) and uses *Git* and *Jira*.
 These projects represent the Apache ecosystem in its entirety; no system has been excluded from our study.
 The complete list can be found online\footnote{https://projects.apache.org/projects.html?name}.
 The Netbeans ecosystem consists in 39 projects, mostly written in Java.
 Similarly to the Apache ecosystem, we did not select any of the projects belonging to the Netbeans ecosystem but all of them.
-The Netbeans community uses {\it Bugzilla} and {\it Mercurial}.
+The Netbeans community uses *Bugzilla* and *Mercurial*.
 
 The choice of the ecosystems to analyze is not random, but rather driven by the motivation to consider projects having (i) different sizes, (ii) different architectures, and (iii) different development bases and processes.
 Indeed, Apache projects are extremely various in terms of size of the development team, purpose and technical choices [@Bavota2013].
