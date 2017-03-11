@@ -3,9 +3,9 @@
 Version control consists of maintaining the versions of files --- such as source code and other software artifacts [@Zeller1997].
 This activity is a complex task and cannot be performed manually on real world project.
 Consequently, numerous tools have been created to help practitioners manage the version of their software artifacts.
-Each evolution of a software is a version (or revision) and each version (revision) is linked to the one before through modifications of software artifacts.
+Each evolution of software is a version (or revision), and each version (revision) is linked to the one before through modifications of software artifacts.
 These modifications consist of updating, adding or deleting software artifacts.
-They can be referred as diff, patch or commit\footnote{These names are not to be used interchangeably as difference exists.}.
+They can be referred as diff, patch or commit\footnote{These names are not to be used interchangeably as a difference exists.}.
 Each diff, patch or commit have the following characteristics:
 
 
@@ -33,7 +33,7 @@ In this example, we can see that author "Mathieu" has created the file $file1.ja
 \subsection{Project Tracking Systems\label{sec:issue-tracking}}
 
 Project tracking systems allow end users to create bug reports (BRs) to report unexpected system behavior,
-manager can create tasks to drive the evolution forward and crash report (CRs) can be automatically created.
+managers can create tasks to drive the evolution forward and crash report (CRs) can be automatically created.
 These systems are also used by development teams to keep track of the modification induced by bug and to crash reports, and keep track of the fixes.
 
 \begin{figure}[h!]
@@ -51,28 +51,28 @@ A fixed report moves to the *RESOLVED* state. Developers have five different pos
 
 
 - RESOLVED/FIXED: A modification to the source code has been pushed, i.e., a changeset (also called a patch) has been committed to the source code management system and fixes the root problem described in the report.
-- RESOLVED/DUPLICATE: A previously submitted report is being processed. The report is marked as duplicate of the original report.
+- RESOLVED/DUPLICATE: A previously submitted report is being processed. The report is marked as a duplicate of the original report.
 - RESOLVED/WONTFIX: This is applied in the case where developers decide that a given report will not be fixed.
-- RESOLVED/WORKSFORME: If the root problem described in the report cannot be reproduced on the reported OS / hardware.
+- RESOLVED/WORKSFORME: If the root problem described in the report cannot be reproduced on the reported OS/hardware.
 - RESOLVED/INVALID: If the report is not related to the software itself.
 
 
 Finally, the report is *CLOSED* after it is resolved.
 A report can be reopened (sent to the *REOPENED* state) and then assigned again if the initial fix was not adequate (the fix did not resolve the problem).
 The elapsed time between the report marked as the new one and the resolved status are known as the *fixing time*, usually in days.
-In case of task branching, the branch associated with the report is marked as ready to be merged.
-Then, the person in charge (quality assurance team, manager, ect...) will be able to merge the branch with the mainline.
+In the case of task branching, the branch associated with the report is marked as ready to be merged.
+Then, the person in charge (quality assurance team, manager, etc...) will be able to merge the branch with the main line.
 If the report is reopened: the days between the time the report is reopened and the time it is marked again as *RESOLVED FIXED* are cumulated.
 Reports can be reopened many times.
 
 Tasks follow a similar life cycle with the exception of the *UNCONFIRMED* and *RESOLVED* states.
-Tasks are created by management and do not need to be confirmed in order to be *OPEN* and *ASSIGNED* to developers.
+Tasks are created by management and do not need to be confirmed to be *OPEN* and *ASSIGNED* to developers.
 When a task is complete, it will not go to the *RESOLVED* state, but to the *IMPLEMENTED* state.
 Bug and crash reports are considered as problems to eradicate in the program.
 Tasks are considered as new features or amelioration to include in the program.
 
 Reports and tasks can have a severity [@Bettenburg2008].
-The severity is a classification to indicate the degree of  impact on the software.
+The severity is a classification to indicate the degree of impact on the software.
 The possible severities are:
 
 
@@ -83,6 +83,7 @@ The possible severities are:
 - minor: minor loss of function, or other problem where easy workaround is present.
 - trivial: cosmetic problems like misspelled words or misaligned text.
 
-The relationship between an report or a task and the actual modification can be hard to establish and it has been a subject of various research studies (e.g., [@Antoniol2002; @Bachmann2010; @Wu2011]).
+The relationship between an report or a task and the actual modification can be hard to establish, and it has been a subject of various research studies (e.g., [@Antoniol2002; @Bachmann2010; @Wu2011]).
 This reason is that they are in two different systems: the version control system and the project tracking system.
 While it is considered a good practice to link each report with the versioning system by indicating the report $\#id$ on the modification message, more than half of the reports are not linked to a modification [@Wu2011].
+
