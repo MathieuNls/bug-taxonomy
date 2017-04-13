@@ -1,8 +1,6 @@
-﻿# Introduction
+# Introduction
 
-In order to classify the research on the different fields related to software maintenance, we can reason about types of bugs at different levels. For
-example, we can group bugs based on the developers that fix
-them or using information about the bugs such as crash traces.
+
 
 There have been several studies (e.g., [@Weiß2007; @Zhang2013]) that study of the factors that influence the bug fixing time.
 These studies empirically investigate the relationship between bug report attributes (description, severity, etc.) and the fixing time.
@@ -12,6 +10,7 @@ For example, a bug that requires only one fix is analyzed the same way as a bug 
 Similarly, if multiple bugs are fixed by modifying the same locations in the code, then we should investigate how these bugs are related in order to predict them in the future.
 Note here that we do not refer to duplicate bugs.
 Duplicate bugs are marked as duplicate (and not fixed), and only the master bug is fixed.
+
 As a motivating example, consider Bugs #AMQ-5066 and #AMQ-5092 from the Apache Software Foundation bug report management system (used to build one of the datasets in this paper).
 Bug #AMQ-5066 was reported on February 19, 2014, and solved with a patch provided by the reporter.
 The solution involves a relatively complex patch that modifies MQTTProtocolConverter.java, MQTTSubscription.java and MQTTTest.java files.
