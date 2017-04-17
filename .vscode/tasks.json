@@ -5,7 +5,7 @@
     "tasks": [
         {
             "taskName": "pandoc",
-            "command": "pandoc -s -S --filter pandoc-citeproc --number-sections --template='${workspaceRoot}/config/default.latex'",
+            "command": "pandoc -s -S --filter pandoc-citeproc --number-sections --template='${workspaceRoot}/default.latex'",
             "args": [
                 "-o ${workspaceRoot}/output.pdf",
                 "${workspaceRoot}/*.md"

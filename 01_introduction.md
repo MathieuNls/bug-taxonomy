@@ -2,7 +2,7 @@
 
 
 
-There have been several studies (e.g., [@Weiß2007; @Zhang2013]) that study of the factors that influence the bug fixing time.
+There have been several studies (e.g., [@Weiß2007; @Zhang2013]) that study the factors that influence the bug fixing time.
 These studies empirically investigate the relationship between bug report attributes (description, severity, etc.) and the fixing time.
 Other studies take bug analysis to another level by investigating techniques and tools for bug prediction and reproduction (e.g., [@Chen2013; @Kim2007a; @Nayrolles2015]).
 These studies, however, treat all bugs as the same.
@@ -27,7 +27,7 @@ The fix consists of modifying slightly the same lines of the code in the exact f
 In fact, Bug #5092 could have been avoided altogether if the first developer provided a more comprehensive fix to #AMQ-5066 (a task that is easier said than done).
 These two bugs are not duplicates since, according to their description, they deal with different types of problems, and yet they can be fixed by providing a similar patch.
 In other words, the failures are different while the root causes (faults in the code) are more or less the same.
-From the bug handling perspective, if we can develop a way to detect such related bug reports during triaging then we can achieve considerable time-saving in the way bug reports are processed, for example, by assigning them to the same developers.
+From the bug handling perspective, if we can develop a way to detect such related bug reports during triaging, then, we can achieve considerable time-saving in the way bug reports are processed, for example, by assigning them to the same developers.
 We also conjecture that detecting such related bugs can help with other tasks such as bug reproduction.
 We can reuse the reproduction of an already fixed bug to reproduce an incoming and related bug.
 
@@ -40,7 +40,7 @@ This clone taxonomy continues to be used by researchers to build better approach
 We are interested in bugs that share similar fixes.
 By a fix, we mean a modification (adding or deleting lines of code) to an existing file that is used to solve the bug. 
 With this in mind, the relationship between bugs and fixes can be modeled using the UML diagram in Figure \ref{fig:bug-taxo-diag}. 
-The diagram only includes bugs that are fixed. 
+The diagram only includes bug-reports that are fixed and not, for example, duplicate reports.
 From this figure, we can think of four instances of this diagram, which we refer to as bug taxonomy or simply bug types (see Figure \ref{fig:bug-taxo}).
 
 \begin{figure}[h!]
@@ -60,16 +60,16 @@ From this figure, we can think of four instances of this diagram, which we refer
 
 
 The first and second types are the ones we intuitively know about.
-Type 1 refers to a bug being fixed in one single location (i.e., one file), while Type 2 refers to bugs being fixed in more than one location.
+T1 refers to a bug being fixed in one single location (i.e., one file), while T2 refers to bugs being fixed in more than one location.
 In Figure 2, only two locations are shown for the sake of clarity, but many more locations could be involved in the fix of a bug.
-Type 3 refers to multiple bugs that are fixed in the exact same location.
-Type 4 is an extension of Type 3, where multiple bugs are resolved by modifying the same set of locations.
-Note that Type 3 and Type 4 bugs are not duplicates, they may occur when different features of the system fail due to the same root causes (faults).
+T3 refers to multiple bugs that are fixed in the exact same location.
+T4 is an extension of T3, where multiple bugs are resolved by modifying the same set of locations.
+Note that T3 and T4 bugs are not duplicates, they may occur when different features of the system fail due to the same root causes (faults).
 We conjecture that knowing the proportions of each type of bugs in a system may provide insight into the quality of the system.
-Knowing, for example, that in a given system the proportion of Type 2 and 4 bugs is high may be an indication of poor system quality since many fixes are needed to address these bugs.
-Also, the existence of a high number of Types 3 and 4 bugs calls for techniques that can effectively find bug reports related to an incoming bug during triaging.
+Knowing, for example, that in a given system the proportion of T2 and T4 bugs is high may be an indication of poor system quality since many fixes are needed to address these bugs.
+Also, the existence of a high number of T3 and T4 bugs calls for techniques that can effectively find bug reports related to an incoming bug during triaging.
 This is similar to the many studies that exist on detection of duplicates (e.g., [@Runeson2007; @Sun2010; @Nguyen2012]), except that we are not looking for duplicates but for related bugs (bugs that are due to failures of different features of the system, caused by the same faults).
-To our knowledge, there is no study that empirically examines bug data with these types in mind, which is the main objective of this section.
+To our knowledge, there is no study that empirically examines bug data with these types in mind, which is the main objective of this paper.
 More particularly, we are interested in the following research questions:
 
 \begin{itemize}

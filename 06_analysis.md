@@ -1,42 +1,52 @@
 # Results and Analysis
 
+In this section, we present the results of our experiences and interpret them to answer our three research questions.
+
 ## What are the proportions of different types of bugs?
 
 \input{tex_tables/bugProportion}
 
 Table \ref{tab:contingency-table} presents the contingency table and the results of the Pearson's chi-squared tests we performed on each type of bug.
-In addition to analyzing bug types independently, we also present the result by analyzing  Types 1 and 2 bugs  with Types 3 and 4 bugs. [Wahab: add a sentence here explaining why this grouping is important]
+In addition to analyzing bug types independently, we also present the result by analyzing T1 and T2 bugs with T3 and T4 bugs. 
+This grouping represents the bug we know intuitively about (i.e. T1: one bug, one fault and T2: one bug, many faults) vs. the less intuitive bugs (i.e. T3: many bug, one root fault and T4: many bugs sharing the same root faults).
 
-We can see that the proportion of Types 3 (22.6\% and 54\%) and 4 (31.3\% and 64.9\%) bugs is largely higher than that of Types 1 (14.3\% and 9.1\%) and 2 (6.8\% and 3.7\%) for both the Apache and the Netbeans ecosystems. Overall, the proportion of different types of bug is as follows: 6.8\%, 3.7\%, 28.3\%, 61.2\% for Types 1, 2, 3 and 4, respectively. The result of the Pearson's test is below 0.01. Therefore,  we reject to null hypothesis $H_{01}$ and conclude that:
+[Wahab: add a sentence here explaining why this grouping is important]
+[Mathieu: Done]
+
+We can see that the proportion of T3 (22.6\% and 54\%) and T4 (31.3\% and 64.9\%) bugs is largely higher than that of T1 (14.3\% and 9.1\%) and 2 (6.8\% and 3.7\%) for both the Apache and the Netbeans ecosystems. Overall, the proportion of different types of bug is as follows: 6.8\%, 3.7\%, 28.3\%, 61.2\% for T1, T2, T3 and T4, respectively. The result of the Pearson's test is below 0.01. Therefore, we reject to null hypothesis $H_{01}$ and conclude that:
 
 [Wahab: you can put the following result in a bordered rectangle]
+[Mathieu: Done]
 
-The number of Types 3 and 4 bugs is considerably higher than the number of Type 1 and 2 bugs. When combined into  groups, there are significantly more Types 3 and 4 (89.5 \%) than Types 1 and 2 (10.5 \%) bugs.
+\fbox{%
+\parbox{0.9\textwidth}{%
+The number of T3 and T4 bugs is considerably higher than the number of T1 and T2 bugs. When combined into  groups, there are significantly more T3 and T4 (89.5 \%) than T1 and T2 (10.5 \%) bugs.}%
+}
 
 ## How complex is each type of bugs?
 
-To answer**RQ$_2$**, we analyze the complexity of each bug in terms of duplication, fixing time, number of comments, number of time a bug is reopened, files impacted, severity, changesets, hunks, and chunks.
+To answer **RQ$_2$**, we analyze the complexity of each bug in terms of duplication, fixing time, number of comments, number of time a bug is reopened, files impacted, severity, changesets, hunks, and chunks.
 
 [Wahab Label (A) ... See the next comment to understand this label]
-
-Figure \ref{fig:boxplots} presents nine boxplots describing the complexity metrics we used in this paper for each type of bug and for each ecosystem.
-In each sub-figure, the bookplates are organized as follows: (a) Types 1 to 4 bugs for the Apache ecosystem, (b) Types 1 to 4 bugs for the Netbeans ecosystem and (c) Types 1 to 4 bugs for both ecosystems combined.
-Except for the severity metric, the median for all other metrics is close to zero.
-Tables \ref{tab:apache-eco}, \ref{tab:netbeans-eco} and \ref{tab:overall-eco} present descriptive statistics about each metric for each bug type per ecosystem and for both ecosystems combined.
-The descriptive statistics used are $\mu$:mean, $\sum$:sum, $\hat{x}$:median, $\sigma$:standard deviation and $\%$:percentage.
-We also show the results of Mann-Whitney test for each metric and type.
-We added the \checkmark~symbol to the Mann-Whitney tests results columns when the value is statistically significant (e.g. $\alpha \textless 0.05$) and \xmark otherwise.
-
-Finally, Table \ref{tab:chi-rq2} presents the Pearson's chi-squared test results for each complexity metric for Types 1 to 4 and for Types 1 and 2 together,  and Types 3 and 4.
-In what follows, we present our findings for each complexity metric.
-
 [Wahab: You need to move the following paragraph to Label (A)]
+[Mathieu: Done]
 
 Complexity metrics are divided into two groups: (a) process and (b) code metrics.
 Process metrics refer to metrics that have been extracted from the project tracking system (i.e., fixing time, comments, reopening and severity).
 Code metrics are directly computed using the source code used to fix a given bug (i.e., files impacted, changesets required, hunks and chunks).
 We acknowledge that these complexity metrics only represent an abstraction of the actual complexity of a given bug as they cannot account for the actual thought process and expertise required to craft a fix.
 However, we believe that they are an accurate abstraction. Moreover, they are used in several studies in the field to approximate the complexity of a bug [@Weiß2007; @Saha2014; @Nam2013; @Anvik2006; @Nagappan].
+
+Figure \ref{fig:boxplots} presents nine boxplots describing the complexity metrics we used in this paper for each type of bug and for each ecosystem.
+In each sub-figure, the bookplates are organized as follows: (a) T1 to T4 bugs for the Apache ecosystem, (b) T1 to T4 bugs for the Netbeans ecosystem and (c) T1 to T4 bugs for both ecosystems combined.
+Except for the severity metric, the median for all other metrics is close to zero.
+Tables \ref{tab:apache-eco}, \ref{tab:netbeans-eco} and \ref{tab:overall-eco} present descriptive statistics about each metric for each bug type per ecosystem and for both ecosystems combined.
+The descriptive statistics used are $\mu$:mean, $\sum$:sum, $\hat{x}$:median, $\sigma$:standard deviation and $\%$:percentage.
+We also show the results of Mann-Whitney test for each metric and type.
+We added the \checkmark symbol to the Mann-Whitney tests results columns when the value is statistically significant (e.g. $\alpha \textless 0.05$) and \xmark otherwise.
+
+Finally, Table \ref{tab:chi-rq2} presents the Pearson's chi-squared test results for each complexity metric for T1 to T4 and for T1 and T2 together, and T3 and T4.
+In what follows, we present our findings for each complexity metric.
 
 \begin{figure*}
 \centering
@@ -64,16 +74,9 @@ However, we believe that they are an accurate abstraction. Moreover, they are us
 \input{tex_tables/overall-types}
 
 ### Duplicate
-The duplicate metric represents the number of times a bug gets resolved using the  *duplicate* label while referencing one of the  *resolved/fixed* bug of our dataset.
-The process metric is useful to approximate the impact of a given bug on the community.
-For a bug to be resolved using the  *duplicate*, it means that the bug has been reported before.
-The more a bug gets reported by the community, the more people are impacted enough to report it.
-Note that, for a bug$\_a$ to be resolved using the  *duplicate* label and referencing bug$\_b$, bug$\_b$ does not have to be resolved itself.
-Indeed, bug$\_b$ could be under investigation (i.e.  *unconfirmed*) or being fixed (i.e.  *new* or  *assigned*).
-Automatically detecting duplicate bug report is a very active research field [@Sun2011; @Bettenburg2008a; @Nguyen2012; @Jalbert2008; @Tian2012a; @Runeson2007] and a well-known measure for bug impact.
-
 
 [Wahab: I noticed that you are using T3, T2, etc. Earlier you were using Type 3, etc. I suggest to using T1, T2, T3, T4 from the beginning].
+[Mathieu: Done]
 
 In the Apache ecosystem, the types for which the bugs  are  most likely to have duplicates, ordered by ascending mean duplication rate, are T3 (0.016) $\textless$ T2 (0.022) $\textless$ T1 (0.026) $\textless$ T4 (0.029) and they represent 14.8\%, 8.1\%, 14.5\% and 62.6\% of the total duplications, respectively.
 The differences between duplication means by types, however, are only significant in 33.33\% (4/12) of the case.
@@ -87,10 +90,7 @@ Overall, the complexity of bug types in terms of the number of duplicates is as 
 
 
 ### Fixing time
-The fixing time metric represents the time it took for the bug report to go from the  *new* state to the  *closed* state.
-If the bug report is reopened, then the time it took for the bug to go from the  *assigned* state to the  *closed* state is added to the first time.
-A bug report can be reopened several times and all the times are added.
-In this section, the time is expressed in days [@Weiss2007; @Zhang2012; @Zhang2013}.
+
 
 In the Apache ecosystem, the types that take the most time to fix are $T2_{time}^3 \gg T1_{time}^2 \gg T4_{time}^1 \gg T3_{time}^4$
 
@@ -103,11 +103,7 @@ When combined, both ecosystem amounts in the following order $T2_{time}^4 > T4_{
 
 ### Comments
 [Wahab: The definition of these metric can be moved to the place where you introduced them. You have bullet point there that can be extended]
-
-The 'number of comments' metric refers to the comments that have been posted by the community on the project tracking system.
-This third process metric evaluates the complexity of a given bug in a sense that if it takes more comments (explanation) from the reporter or the assignee to provide a fix, then the bug must be more complex to understand.
-The number of comments has been shown to be useful in assessing the complexity of bugs [@Zhang2013; @Zhang2012]. 
-It is also used in bug prediction approaches [@DAmbros2010; @Bhattacharya2011].
+[Mathieu: Done]
 
 The analysis of the Mann-Whitney test matrix, in respect of comments, for the Apache ecosystem provides the following results:
 $T4_{comment} ^1 \gg T2_{comment}^4 \gg T3_{comment}^2 > T1_{comment}^3$.
@@ -117,56 +113,41 @@ In the Netbeans ecosystem, the bug types follows a different result: $T4_{commen
 When combining both ecosystems, the results are: $T4_{comment}^1 \gg T2_{comment}^4 > T3_{comment}^2 \gg T1_{comment}^3$.
 
 ### Bug Reopening
-The bug is reopening metric counts how many times a given bug gets reopened.If a bug report is reopened, it means that the fix was arguably hard to come up with or the report was hard to understand [@Zimmermann2012; @Shihab2010; @Lo2013].
+
 In the Apache and Netbeans ecosystems, we found that the order bug types of the bugs that are reopened is the same: $T4_{reop}^1 > T2_{reop}^4 \gg T3_{reop}^3 \gg T1_{reop}^2$ and $T4_{reop}^1 > T2_{reop}^4 > T3_{reop}^2 > T1_{reop}^3$, respectively.
 
 When combined, however, the order does change: $T4_{reop}^1 > T2_{reop}^4  > T1_{reop}^3 \gg T3_{reop}^2$.
 
 ### Severity
 
-The severity metric reports the degree of impact of the report on the software.
-Predicting the severity of a given report is an active research field
-[@Menzies2008; Guo2010; @Lamkanfi2010; @Tian2012; @ValdiviaGarcia2014; @Havelund2015] and it helps to prioritization of fixes [@Xuan2012].
-The severity is a textual value (blocker, critical, major, normal, minor, trivial) and the Mann-Whitney test only accepts numerical input.
-Consequently, we had to assign numerical values to each severity.
-We chose to assign values from 1 to 6 for trivial, minor, normal, major, critical and blocker severities, respectively.
+
 The bug type ordering according to the severity metrics is: $T4_{sev}^1 \gg T3_{sev}^2 \gg T2_{sev}^4 > T1_{sev}^3$, $T2_{sev}^4 > T1_{sev}^3 \gg T3_{sev}^2 \gg T4_{sev}^1$ and $T4_{sev}^1 \gg T3_{sev}^2 > T1_{sev}^3 > T2_{sev}^4$ for Apache, Netbeans, and both combined, respectively.
 
 ### Files impacted
 The number of files impacted measures how many files have been modified for the bug report to be closed.
-Unsurprisingly, Types 4 and 2 are the ones with the most files impacted.
-Indeed, according to their definitions, presented in Figure \ref{fig:bug-taxo}, Types 1 and 3 only need a modification in one location. This metric is, therefore, applicable to bug Types 2 and 4 only.
-In Apache, type 4 structures are wider than type 2 ($T4_{files}^1 \gg T2_{files}^2 \gg T3_{files}^3 < = > T1_{files}^4$) while in Netbeans, type 2 are wider ($T2_{files}^3 \gg T4_{files}^1 \gg T3_{files}^2 < = > T1_{files}^4$).
+Unsurprisingly, T4 and T2 are the ones with the most files impacted.
+Indeed, according to their definitions, presented in Figure \ref{fig:bug-taxo}, T1 and T3 only need a modification in one location. This metric is, therefore, applicable to T2 and T4 bug  only.
+In Apache, T4 structures are wider than T2 ($T4_{files}^1 \gg T2_{files}^2 \gg T3_{files}^3 < = > T1_{files}^4$) while in Netbeans, T2 are wider ($T2_{files}^3 \gg T4_{files}^1 \gg T3_{files}^2 < = > T1_{files}^4$).
 
-Overall, types 4 impacts more files than types 2 while types 1 and 2 impacts only 1 file ($T4_{files}^1 \gg T2_{files}^3 \gg T3_{files}^2 < = > T1_{files}^4$).
+Overall, T4 impacts more files than T2 while T1 and T2 impacts only 1 file ($T4_{files}^1 \gg T2_{files}^3 \gg T3_{files}^2 < = > T1_{files}^4$).
 
 ### Changesets
-The changeset metrics registers how many changesets (or commits/patch/fix) have been required to close the bug report.
-In the project tracking system, changesets to resolve the bug are proposed and analyzed by the community, automated quality insurance tools and the quality insurance team itself.
-Each changeset can be either accepted and applied to the source code or dismissed.
-The number of changesets (or versions of a given changeset) it takes before an integration can hint us about the complexity of the fix.
-In case the bug report gets reopen, and new changesets proposed, the new changesets (after the reopening) are added to the old ones (before the reopening).
+
 For the Apache ecosystem, we found the following: $T4_{changesets}^1 \gg T2_{changesets}^2 \gg T1_{changesets}^4 <=> T3_{changesets}^3$.
 
-In the Netbeans ecosystem, the order stays the same at the exception of Types 1 and 2 that switch position from 3 to 2 and 2 to 3, respectively ($T4_{changesets}^1 \gg T1_{changesets}^3 > T2_{changesets}^4 > T3_{changesets}^2$).
+In the Netbeans ecosystem, the order stays the same at the exception of T1 and T2 that switch position from 3 to 2 and 2 to 3, respectively ($T4_{changesets}^1 \gg T1_{changesets}^3 > T2_{changesets}^4 > T3_{changesets}^2$).
 
-Overall, Type 4 bugs are the most complex bugs in terms of the number of submitted changesets ($T4_{changesets}^1 \gg T2_{changesets}^3 \gg T3_{changesets}^2 \gg T1_{changesets}^4$).
+Overall, T4 bugs are the most complex bugs in terms of the number of submitted changesets ($T4_{changesets}^1 \gg T2_{changesets}^3 \gg T3_{changesets}^2 \gg T1_{changesets}^4$).
 
 While results have been published on the bug-fix patterns [@Pan2008], smell introduction [@Tufano2015; @Eyolfson2011], to the best of our knowledge, no one interested themselves in how many iterations of a patch was required to close a bug report beside us.
 
 ### Hunks
-The hunks metric counts the number of consecutive code blocks of modified, added or deleted lines in textual files.
-Hunks are used to determine, in each file, how many different places a developer has modified.
-This metric is widely used for bug insertion prediction [@Kim2006; @Jung2009; @Rosen2015] and bug-fix comprehension [@Pan2008].
-In our ecosystems, there is a relationship between the number of files modified and the hunks.
-The number of code blocks modified is likely to rise as to the number of modified files as the hunks metric will be at least 1 per file.
-We found that Types 2 and 4 bugs, that requires many files to get fixed, are the ones that have significantly higher scores for the hunks metric; Apache ecosystem: $T4_{hunks}^1 \gg T2_{hunks}^2 \gg T3_{hunks}^3 \gg T1_{hunks}^4$, Netbeans ecosystem: $T4_{hunks}^1 \gg T2_{hunks}^3 \gg T3_{hunks}^2 \gg T1_{hunks}^4$, and overall $T4_{hunks}^1 \gg T2_{hunks}^2 \gg T1_{hunks}^4 \gg T3_{hunks}^3$.
+
+We found that T2 and T4 bugs, that requires many files to get fixed, are the ones that have significantly higher scores for the hunks metric; Apache ecosystem: $T4_{hunks}^1 \gg T2_{hunks}^2 \gg T3_{hunks}^3 \gg T1_{hunks}^4$, Netbeans ecosystem: $T4_{hunks}^1 \gg T2_{hunks}^3 \gg T3_{hunks}^2 \gg T1_{hunks}^4$, and overall $T4_{hunks}^1 \gg T2_{hunks}^2 \gg T1_{hunks}^4 \gg T3_{hunks}^3$.
 
 ### Churns
-The last metrics, churns, counts the number of lines modified.
-The churn value for a line change should be at least two as the line has to be deleted first and then added back with the modifications.
-Once again, this is a widely used metric in the field [@Kim2006; @Pan2008; @Jung2009; @Rosen2015].
-Once again, Types 4 and 2 are the ones with the most churns; Apache ecosystem $T4_{churns}^1 \gg T2_{churns}^2 \gg T1_{churns}^4 > T3_{churns}^3$, Netbeans ecosystem: $T4_{churns}^1 \gg T2_{churns}^3 \gg T3_{churns}^2 \gg T1_{churns}^4$ and overall : $T4_{churns}^1 \gg T2_{churns}^2 \gg T1_{churns}^4 \gg T3_{churns}^3$.
+
+Once again, T4 and T2 are the ones with the most churns; Apache ecosystem $T4_{churns}^1 \gg T2_{churns}^2 \gg T1_{churns}^4 > T3_{churns}^3$, Netbeans ecosystem: $T4_{churns}^1 \gg T2_{churns}^3 \gg T3_{churns}^2 \gg T1_{churns}^4$ and overall : $T4_{churns}^1 \gg T2_{churns}^2 \gg T1_{churns}^4 \gg T3_{churns}^3$.
 
 \input{tex_tables/chisq}
 \input{tex_tables/combined}
@@ -177,30 +158,37 @@ We counted how many times each bug type obtained each position in our nine ranki
 
 
 We did the same simple analysis of the rank of each type for each metric, to take into account the frequency of bug types in our calculation, and multiply both values.
-The complexity scores we calculated are as follows: 1330, 1750, 2580 and 7120 for bug types 1, 2, 3 and 4, respectively.
-According to these complexity scores, types 3 and 4 are more complex than types 1 and 2.
+The complexity scores we calculated are as follows: 1330, 1750, 2580 and 7120 for T1, T2, T3 and T4 bugs, respectively.
+According to these complexity scores, T3 and T4 are more complex than T1 and T2.
 To confirm or infirm the validity of our complexity scores, we ran our experiments again.
-This time, we combined types 1 \& 2 and types 3 \& 4 for the two ecosystems.
+This time, we combined T1 \& T2 and T3 \& T4 for the two ecosystems.
 As shown by Table \ref{tab:combined-one}, our complexity scores are meaningful.
-Indeed, Types 3 \& 4 are statistically more complex ($\gg$) than Types 1 \& 2 according to the duplicate, fixing time, comments, files impacted, changesets, hunks and churns complexity metrics.
-Also, Types 3 \& 4 get reopen more than types 1 \& 2, in average, but the result of the Mann-Whitney test is not conclusive (i.e. $\alpha>0.05$).
-Out of our nine complexity metrics, the only one where Types 1 \& 2 perform  *worst* than Types 3 \& 4 is the severity.
+Indeed, T3 \& T4 are statistically more complex ($\gg$) than T1 \& T2 according to the duplicate, fixing time, comments, files impacted, changesets, hunks and churns complexity metrics.
+Also, T3 \& T4 get reopen more than T1 \& T2, in average, but the result of the Mann-Whitney test is not conclusive (i.e. $\alpha>0.05$).
+Out of our nine complexity metrics, the only one where T1 \& T2 perform *worst* than T3 \& T4 is the severity.
 
 [Wahab: This is good, but expected]
 
+\fbox{%
+\parbox{0.9\textwidth}{%
 Consequently, we reject to null hypothesis $H_{02}$ and conclude that the complexity of bug is related to its type.
-Moreover, Types 3 and 4  bugs are more complex than Types 1 and 2 bugs across the ecosystems we studied.
+Moreover, T3 and T4 bugs are more complex than T1 and T2 bugs across the ecosystems we studied.}%
+}
 
 ## Are bug types predictable at opening time?
 
-To answer **RQ$_3$**, we analyze the accuracy of predictors aiming at determining the type of a bug at submit time (i.e. when the bug report is opened).  [Wahab: As I mentioned earlier, you need to clarify submit-time, opening-time and use one them only].
+To answer **RQ$_3$**, we analyze the accuracy of predictors aiming at determining the type of a bug at submission time (i.e. when the bug report is submitted by someone).  
+[Wahab: As I mentioned earlier, you need to clarify submit-time, opening-time and use one them only].
+[Mathieu: Done]
 
-Tables \ref{tab:1gram}, \ref{tab:2gram} and \ref{tab:3gram} presents the results obtained while building classifiers for the most complex type of bug. According to **RQ$_2$**, the most complex type of bug, in terms of duplicate, time to fix, comments, reopening, files changed, severity, changesets, churns, and hunks, is Type 4.
+Tables \ref{tab:1gram}, \ref{tab:2gram} and \ref{tab:3gram} presents the results obtained while building classifiers for the most complex type of bug. According to **RQ$_2$**, the most complex type of bug, in terms of duplicate, time to fix, comments, reopening, files changed, severity, changesets, churns, and hunks, is T4.
 
 [Wahab: I removed the hypothesis]
-To test our null hypothesis $H_{03}$ (Bug types classifiers are not accurate), we built nine different classifiers using three different machine learning techniques: Linear regression, support vector machines and random forest for ten different projects (5 from each ecosystem).
+[Mathieu: I adjusted the text]
 
-We selected the top 5 projects of each ecosystem with regard to their bug report count (Ambari, Cassandra, Flume, HBase and Hive for Apache; Cnd, Editor, Java, JavaEE and Plateform for Netbeans).
+To answer our research question, we built nine different classifiers using three different machine learning techniques: Linear regression, support vector machines and random forest for ten different projects (5 from each ecosystem).
+
+We selected the top 5 projects of each ecosystem with regard to their bug report count (Ambari, Cassandra, Flume, HBase and Hive for Apache; Cnd, Editor, Java, JavaEE and Platform for Netbeans).
 For each machine learning techniques, we built classifiers using the text contained in the bug report and the comment of the first 48 hours as they are likely to provide additional insights on the bug itself. 
 We eliminate the stop-words of the text and trim the words to their semantical roots using wordnet.
 We experimented with 1-gram, 2-gram, and 3-gram words, weighted using tf/idf. 
@@ -208,12 +196,12 @@ We experimented with 1-gram, 2-gram, and 3-gram words, weighted using tf/idf.
 The feature vectors are fed to the different machine learning techniques in order to build a classifier.
 The data is separated into two parts with a 60%-40% ratio.
 The 60% part is used for training purposes while the 40% is used for testing purposes.
-During the training process we use the ten-folds iteratively and, for each iteration, we change the parameters used by the classifier building process (cost, mtry, etc).
+During the training process we use the ten-folds technique iteratively and, for each iteration, we change the parameters used by the classifier building process (cost, mtry, etc).
 At the end of the iterations, we select the best classifier and exercise it against the second part of 40%.
 The results we report in this section are the performances of the nine classifiers trained on 60% of the data and classifying the remaining 40%.
 The performances of each classifier are examined in terms of true positive, true negative, false negative and false positive classifications.
 True positives and negative numbers refer to the cases where the classifier correctly classify a report.
-The false negative represents the number of reports that are classified as non-type 4 while they are and false positive represents the number of reports classified as type 4 while they are not.
+The false negative represents the number of reports that are classified as non-T4 while they are and false positive represents the number of reports classified as T4 while they are not.
 These numbers allow us to derive three common metrics: precision, recall and f_1 measure.
 
 
@@ -229,32 +217,31 @@ recall = \frac{TP+FN \cap TP+FP}{TP+FN}
 f_1 = \frac{2TP}{2TP + FP + FN}
 \end{equation}
 
-Finally, the performances of each classifier are compared to the tenth classifier. 
-This last classifier is random classifier that will randomly predict the type of a bug.
-As we are in a two-classes system (type 4 and non-type 4), 50% of the reports are classified as type 4 by the random classifier.
+Finally, the performances of each classifier are compared to a tenth classifier. 
+This last classifier is a random classifier that randomly predicts the type of a bug.
+As we are in a two-classes system (T4 and non-T4), 50% of the reports are classified as T4 by the random classifier.
 The performances of the random classifier itself are presented in table \ref{tab:random}.
 
 \input{tex_tables/1gram}
 
-For the first three classifiers (SVM, linear regression and random forest with a 1-gram grouping of stemmed words) the best classifier the random forest one with 77.63% F_1 measure.
+For the first three classifiers (SVM, linear regression and random forest with a 1-gram grouping of stemmed words) the best classifier the random forest one with 77.63% $F_1$ measure.
 It is followed by SVM (77.19%) and, finally, linear regression (76.31%).
 Regardless of the technique used to classify the report, there is no significant difference between ecosystems.
-Indeed, the p-values obtained with chi-square tests are above 0.05.
-A p-value below 0.05 is a marker of statistical significance.
+Indeed, the p-values obtained with chi-square tests are above 0.05 and a p-value below 0.05 is a marker of statistical significance.
 While random forest emerges as the most accurate classifier, the difference between the three classifiers is not significant (p-value = 0.99).
 
 \input{tex_tables/2gram}
 
-For the second three classifiers (SVM, linear regression and random forest with 2-grams grouping of stemmed words) the best classifier is once again random forest with 77.34% F_1 measure.
+For the second three classifiers (SVM, linear regression and random forest with 2-grams grouping of stemmed words) the best classifier is once again random forest with 77.34% $F_1$ measure.
 It is followed by SVM (76.91%) and, finally, linear regression (76.25%).
 As for the first three classifiers, the difference between the classifiers and the ecosystems are not significant.
 Moreover, the difference in performances between 1 and 2 grams are not significant either.
 
 \input{tex_tables/3gram}
 
-Finally, the last three classifiers (SVM, linear regression and random forest with 3-grams grouping of stemmed words) the best classifier is once again random forest with 77.12% F_1 measure.
+Finally, the last three classifiers (SVM, linear regression and random forest with 3-grams grouping of stemmed words) the best classifier is once again random forest with 77.12% $F_1$ measure.
 It is followed by SVM (76.72%) and, finally, linear regression (75.89%).
-Once again, the difference between the classifiers and the ecosystems are not significant.
+Again, the difference between the classifiers and the ecosystems are not significant.
 Neither are the difference in results between 1, 2 and 3 grams.
 
 \input{tex_tables/random}
@@ -262,6 +249,10 @@ Neither are the difference in results between 1, 2 and 3 grams.
 Each one of our nine classifiers improves upon the random one on all projects and by a large margin ranging from 20.73% to 22.48%.
 
 [Wahab: You can say that the conclusion is that....]
-Hence, we can reject the $H_{03}$ null hypothesis and conclude that bug types classifiers are indeed accurate.
+[Mathieu: Done]
 
+\fbox{%
+\parbox{0.9\textwidth}{%
+The conclusion is that bug types classifiers are indeed accurate.}%
+}
 
