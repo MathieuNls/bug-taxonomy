@@ -68,332 +68,148 @@ It is followed by SVM (76.72%) and, finally, linear regression (75.89%).
 Again, the difference between the classifiers and the ecosystems are not significant.
 Neither are the difference in results between 1, 2 and 3 grams.
 
-\input{tex_tables/random}
 
-Each one of our nine classifiers improves upon the random one on all projects and by a large margin ranging from 20.73% to 22.48%.
+https://stats.stackexchange.com/questions/82162/cohens-kappa-in-plain-english + random
 
 \fbox{%
 \parbox{0.9\textwidth}{%
 The conclusion is that bug types classifiers are indeed accurate.}%
 }
 
+## What are the best predictors of type 4 bugs ?
 
-apache.2grams.xmlambari-1-2-3-4-4.tfidf.wnet.xml
-1.97039 -  heatmap displai</word>
-1.56803 -  ambari heatmap</word>
-1.45959 -  new stack</word>
-1.43768 -  make compon</word>
-1.43768 -  config ui</word>
-1.36335 -  py br</word>
-1.31362 -  updat version</word>
-1.31362 -  nagio test</word>
-1.31362 -  fix nagio</word>
-1.29905 -  manag support</word>
-apache.2grams.xmlcassandra-1-2-3-4-4.tfidf.wnet.xml
-1.33355 -  x x</word>
-0.97163 -  snapshot sequenti</word>
-0.97163 -  sequenti repair</word>
-0.97163 -  make snapshot</word>
-0.85016 -  sstabl import</word>
-0.85016 -  export doesn</word>
-0.76352 -  import export</word>
-0.71283 -  doubl quot</word>
-0.68013 -  us bulkwrit</word>
-0.68013 -  up secondari</word>
-apache.2grams.xmlflume-1-2-3-4-4.tfidf.wnet.xml
-0.97249 -  upgrad flume</word>
-0.97249 -  plugin d</word>
-0.97249 -  flume upgrad</word>
-0.97249 -  flume null</word>
-0.97249 -  document plugin</word>
-0.97249 -  d directori</word>
-0.85696 -  null sink</word>
-0.85696 -  jmx metric</word>
-0.83356 -  variou layout</word>
-0.83356 -  timeout is</word>
-apache.2grams.xmlhbase-1-2-3-4-4.tfidf.wnet.xml
-0.90580 -  gt gt</word>
-0.81104 -  on bloom</word>
-0.64794 -  bloom filter</word>
-0.62670 -  test link</word>
-0.62670 -  rebuild user</word>
-0.62670 -  inform client</word>
-0.58355 -  borg a</word>
-0.56369 -  client column</word>
-0.55639 -  a sv</word>
-0.52683 -  more inform</word>
-apache.2grams.xmlhive-1-2-3-4-4.tfidf.wnet.xml
-1.38323 -  hive remov</word>
-1.02074 -  thrifthttpcliservic test</word>
-1.02074 -  thriftbinarycliservic and</word>
-1.02074 -  refactor thriftbinarycliservic</word>
-1.02074 -  and thrifthttpcliservic</word>
-0.94782 -  vertex start</word>
-0.94782 -  start log</word>
-0.94782 -  fix vertex</word>
-0.82933 -  val val</word>
-0.82933 -  merg merg</word>
-apache.3grams.xmlambari-1-2-3-4-4.tfidf.wnet.xml
-1.97039 -  ambari heatmap displai</word>
-1.57631 -  make compon name</word>
-1.57631 -  config ui and</word>
-1.57631 -  ambari make compon</word>
-1.57631 -  ambari config ui</word>
-1.31362 -  updat version number</word>
-1.31362 -  nagio test p</word>
-1.31362 -  fix nagio test</word>
-1.31362 -  descript for nagio</word>
-1.31362 -  ambari updat version</word>
-apache.3grams.xmlcassandra-1-2-3-4-4.tfidf.wnet.xml
-1.41306 -  x x x</word>
-0.97163 -  snapshot sequenti repair</word>
-0.97163 -  sequenti repair the</word>
-0.97163 -  make snapshot sequenti</word>
-0.97163 -  cassandra make snapshot</word>
-0.85016 -  sstabl import export</word>
-0.85016 -  import export doesn</word>
-0.85016 -  export doesn t</word>
-0.85016 -  cassandra sstabl import</word>
-0.71283 -  doesn t support</word>
-apache.3grams.xmlflume-1-2-3-4-4.tfidf.wnet.xml
-0.97249 -  upgrad flume to</word>
-0.97249 -  sink should support</word>
-0.97249 -  plugin d directori</word>
-0.97249 -  null sink should</word>
-0.97249 -  flume upgrad flume</word>
-0.97249 -  flume to us</word>
-0.97249 -  flume null sink</word>
-0.97249 -  flume document plugin</word>
-0.97249 -  document plugin d</word>
-0.85696 -  metric support for</word>
-apache.3grams.xmlhbase-1-2-3-4-4.tfidf.wnet.xml
-0.81104 -  on bloom filter</word>
-0.62670 -  to integr test</word>
-0.62670 -  rebuild user region</word>
-0.62670 -  more inform client</word>
-0.62670 -  integr test link</word>
-0.62670 -  inform client column</word>
-0.62670 -  column to integr</word>
-0.62670 -  client column to</word>
-0.62670 -  add more inform</word>
-0.58355 -  sv borg a</word>
-apache.3grams.xmlhive-1-2-3-4-4.tfidf.wnet.xml
-1.02074 -  thriftbinarycliservic and thrifthttpcliservic</word>
-1.02074 -  refactor thriftbinarycliservic and</word>
-1.02074 -  and thrifthttpcliservic test</word>
-0.94782 -  vertex start log</word>
-0.94782 -  start log for</word>
-0.94782 -  hive fix vertex</word>
-0.94782 -  fix vertex start</word>
-0.82933 -  spark build after</word>
-0.82933 -  hive fix spark</word>
-0.82933 -  fix spark build</word>
-apache.tf.wnetambari-1-2-3-4-4.tfidf.wnet.xml
-1.69574 - nan</word>
-1.42108 - heatmap</word>
-1.40534 - typo</word>
-1.29905 - zypper</word>
-1.21258 - yuicombin</word>
-1.21258 - flicker</word>
-1.18097 - testactionqueu</word>
-1.08710 - umask</word>
-1.02694 - libjar</word>
-0.98742 - consist</word>
-apache.tf.wnetcassandra-1-2-3-4-4.tfidf.wnet.xml
-0.77359 - sequenti</word>
-0.68013 - bulkwrit</word>
-0.64898 - expiringcolumn</word>
-0.59023 - export</word>
-0.56675 - datacentershardstategi</word>
-0.56675 - columncomparatorfactorytest</word>
-0.52028 - doubl</word>
-0.50899 - stategi</word>
-0.49525 - metric</word>
-0.48627 - slf</word>
-apache.tf.wnetflume-1-2-3-4-4.tfidf.wnet.xml
-0.97249 - structur</word>
-0.97249 - spooldir</word>
-0.85696 - plugin</word>
-0.83356 - layout</word>
-0.83356 - jappend</word>
-0.83356 - asynchbasesink</word>
-0.74143 - upgrad</word>
-0.73454 - variou</word>
-0.73454 - calcul</word>
-0.70424 - jmx</word>
-apache.tf.wnethbase-1-2-3-4-4.tfidf.wnet.xml
-0.62650 - testshel</word>
-0.57672 - zkleadermanag</word>
-0.56639 - bloom</word>
-0.55549 - authenticationtokensecretmanag</word>
-0.50067 - rebuild</word>
-0.49241 - rowtoobigexcept</word>
-0.49241 - preemptiv</word>
-0.48953 - scannermodel</word>
-0.44775 - gt</word>
-0.42328 - filter</word>
-apache.tf.wnethive-1-2-3-4-4.tfidf.wnet.xml
-2.21152 - commonrcfileinputformat</word>
-1.02074 - thrifthttpcliservic</word>
-1.02074 - thriftbinarycliservic</word>
-0.78598 - remov</word>
-0.72894 - val</word>
-0.71790 - vertex</word>
-0.66649 - refactor</word>
-0.64355 - merg</word>
-0.55286 - gentezutil</word>
-0.52959 - cbo</word>
-netbeans.2grams.xmlcnd-1-2-3-4-4.tfidf.wnet.xml
-2.71862 -  support amd</word>
-2.71862 -  project unit</word>
-2.48757 -  gizmo monitor</word>
-1.82295 -  n a</word>
-1.81241 -  track gizmo</word>
-1.74075 -  a n</word>
-1.63119 -  parallel comput</word>
-1.63119 -  comput advis</word>
-1.63119 -  advis appear</word>
-1.61551 -  sourc sourc</word>
-netbeans.2grams.xmleditor-1-2-3-4-4.tfidf.wnet.xml
-1.26643 -  trailingwhitespaceremov resetmodregion</word>
-1.16901 -  refresheifindic creat</word>
-1.08551 -  spelcheck doe</word>
-1.08551 -  in properti</word>
-0.94980 -  spellcheck creat</word>
-0.94980 -  repositoryupdat creat</word>
-0.94243 -  lexer demo</word>
-0.91181 -  us supertyp</word>
-0.91181 -  supertyp where</word>
-0.86316 -  in repositoryupdat</word>
-netbeans.2grams.xmljava-1-2-3-4-4.tfidf.wnet.xml
-2.71039 -  implement optim</word>
-2.71039 -  implement call</word>
-2.34418 -  implement move</word>
-2.34418 -  implement move</word>
-2.34418 -  implement move</word>
-2.03281 -  implement bean</word>
-1.63045 -  bean info</word>
-1.62625 -  implement histori</word>
-1.48762 -  histori tab</word>
-1.40860 -  test test</word>
-netbeans.2grams.xmljavaee-1-2-3-4-4.tfidf.wnet.xml
-1.66117 -  implement hibern</word>
-1.30352 -  hibern revers</word>
-1.26301 -  revers engin</word>
-1.11316 -  ejb ref</word>
-1.06793 -  websocket endpoint</word>
-1.06793 -  sampl see</word>
-1.06793 -  includ more</word>
-0.96890 -  more java</word>
-0.93442 -  li li</word>
-0.91805 -  u request</word>
-netbeans.2grams.xmlplatform-1-2-3-4-4.tfidf.wnet.xml
-1.33431 -  remov deprec</word>
-1.33431 -  filesytem getact</word>
-1.33431 -  deprec filesytem</word>
-1.05739 -  fileobject constructnam</word>
-1.04467 -  quicksearch doe</word>
-0.98938 -  sun jna</word>
-0.98182 -  constructnam fileobject</word>
-0.96068 -  express evalu</word>
-0.94565 -  visual librari</word>
-0.91377 -  in full</word>
-netbeans.3grams.xmlcnd-1-2-3-4-4.tfidf.wnet.xml
-2.09722 -  a n a</word>
-1.91898 -  n a n</word>
-1.87676 -  sourc sourc sourc</word>
-1.63119 -  parallel comput advis</word>
-1.63119 -  comput advis appear</word>
-1.49256 -  pty helper for</word>
-1.49256 -  provid pty helper</word>
-1.48291 -  perform metric attribut</word>
-1.48291 -  metric attribut to</word>
-1.48291 -  icon is miss</word>
-netbeans.3grams.xmleditor-1-2-3-4-4.tfidf.wnet.xml
-1.08551 -  work in properti</word>
-1.08551 -  spelcheck doe not</word>
-0.94980 -  spellcheck creat attach</word>
-0.94980 -  repositoryupdat creat attach</word>
-0.94980 -  lock in spellcheck</word>
-0.94980 -  in spellcheck creat</word>
-0.94980 -  in repositoryupdat creat</word>
-0.91181 -  us supertyp where</word>
-0.91181 -  supertyp where possibl</word>
-0.89395 -  updat lucen librari</word>
-netbeans.3grams.xmljava-1-2-3-4-4.tfidf.wnet.xml
-2.03281 -  implement bean info</word>
-1.99134 -  test test test</word>
-1.62625 -  implement histori tab</word>
-1.48762 -  histori tab for</word>
-1.35523 -  optim import implement</word>
-1.35523 -  import implement optim</word>
-1.35523 -  implement optim import</word>
-1.35523 -  implement call hierarchi</word>
-1.35523 -  hierarchi implement call</word>
-1.35523 -  call hierarchi implement</word>
-netbeans.3grams.xmljavaee-1-2-3-4-4.tfidf.wnet.xml
-1.66117 -  implement hibern revers</word>
-1.30352 -  hibern revers engin</word>
-1.06793 -  more java ee</word>
-1.06793 -  includ more java</word>
-1.06793 -  ee sampl see</word>
-1.06793 -  editor support for</word>
-0.83058 -  revers engin implement</word>
-0.83058 -  engin implement hibern</word>
-0.80742 -  class javax swing</word>
-0.78685 -  jdk as default</word>
-netbeans.3grams.xmlplatform-1-2-3-4-4.tfidf.wnet.xml
-1.33431 -  remov deprec filesytem</word>
-1.33431 -  deprec filesytem getact</word>
-1.14369 -  work in full</word>
-1.04467 -  quicksearch doe not</word>
-0.98938 -  com sun jna</word>
-0.98182 -  filesystem fileobject constructnam</word>
-0.98182 -  fileobject constructnam fileobject</word>
-0.98182 -  constructnam fileobject java</word>
-0.90633 -  fileobject java org</word>
-0.88951 -  while activ j</word>
-netbeans.tf.wnetcnd-1-2-3-4-4.tfidf.wnet.xml
-1.96346 - objecttypedescriptor</word>
-1.64567 - regist</word>
-1.58253 - gz</word>
-1.56338 - unit</word>
-1.53351 - gizmo</word>
-1.48077 - monitor</word>
-1.44974 - amd</word>
-1.36515 - custom</word>
-1.35844 - pt</word>
-1.32257 - aptpredefinedmacromap</word>
-netbeans.tf.wneteditor-1-2-3-4-4.tfidf.wnet.xml
-1.26643 - resetmodregion</word>
-1.15090 - trailingwhitespaceremov</word>
-1.08551 - spelcheck</word>
-1.06237 - refresheifindic</word>
-0.92868 - paxx</word>
-0.91181 - supertyp</word>
-0.86025 - li</word>
-0.85646 - demo</word>
-0.83699 - exclud</word>
-0.81151 - coloringmap</word>
-netbeans.tf.wnetjava-1-2-3-4-4.tfidf.wnet.xml
-1.91109 - optim</word>
-1.56573 - hierarchi</word>
-1.33469 - initi</word>
-1.25478 - jsp</word>
-1.16215 - val</word>
-1.16163 - preprocessor</word>
-1.16163 - dsl</word>
-1.14675 - sqlparam</word>
-1.12927 - histori</word>
-1.11326 - beaninfo</word>
-netbeans.tf.wnetjavaee-1-2-3-4-4.tfidf.wnet.xml
-1.24591 - li</word>
-1.24591 - entitymanagergenerationstrategyresolv</word>
-1.14949 - revers</word>
-1.10897 - engin</word>
-0.91098 - endpoint</word>
-0.88460 - numberofitem</word>
-0.87947 - datacent</word>
-0.87655 - convert</word>
-0.86988 - websocket</word>
-0.79378 - ref</word>
+In this section we answer our second research question: *What are the best predictors of type 4 bugs*. 
+To do so, we extracted the best predictor of type 4 bugs for each one of the extracted grams (1, 2 and 3) for each of our ten test projects (Five Apache, Five Netbeans).
+Then, we manually investigate the source code and the reports of these ten software projects in order to determine why a given word is a good predictor of type 4 bug.
+In the remaining of this section we present our findings by project and then provide a conclusion on the best predictors of type 4 bugs.
+
+### Ambari
+
+Ambari is aimed at making Hadoop management simpler by developing software for provisioning, managing, and monitoring Apache Hadoop clusters.
+One of the most acclamed feature of Ambari is the ability to visualize clusters' health, according to user-defined metric, with heatmaps.
+These heatmaps give a quick overview of the system.
+
+Figure \ref{fig:ambari-heatmap} shows a screenshot of such a heatmap.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.6]{media/ambari-heatmap.jpg}
+    \caption{Ambari heatmap
+    \label{fig:ambari-heatmap}}
+\end{figure}
+
+At every tested grams (i.e. 1, 2 and 3) the word "heatmap" is a strong predictor of type 4 bugs. 
+The heatmap feature is a complex feature as it heavily relies on the underlying instrumentation of Hadoop and the comsumption of many log format in order to, for example, extract the remaning free space on a disk or the current load of a CPU.
+
+Another word that is a strong predictor of type 4 bug is "nagio". 
+Nagio is a log monitoring server belonging to the Apache constellation. 
+It is used as optional add-on for Ambari and, as for the heatmap, is very suceptible to log format change and API breakage.
+
+Versions of the "nagio" and "heatmap" keywords include: "heatmap displai", "ambari heatmap", "fix nagio", "nagio test", "ambari heatmap displai", "fix nagio test".
+
+### Cassandra
+
+Cassandra is database with high scalability and high availability without compromising performance.
+While extracting the unique word combinations from the report of Cassandra, one word which is a strong predictor of type 4 bug is "snapshot".
+
+As described in the documentation, in Cassandra terms, *a snapshot first flushes all in-memory writes to disk, then makes a hard link of the SSTable files for each keyspace. You must have enough free disk space on the node to accommodate making snapshots of your data files. A single snapshot requires little disk space. However, snapshots can cause your disk usage to grow more quickly over time because a snapshot prevents old obsolete data files from being deleted. After the snapshot is complete, you can move the backup files to another location if needed, or you can leave them in place.* [^](http://docs.datastax.com/en/archived/cassandra/2.0/cassandra/operations/ops_backup_takes_snapshot_t.html)
+
+The definition gives the reader an insight on how complex this feature used in terms of intergration with the host system and how coupled it is to the Cassandra data model.
+
+Other versions of the "snapshot" keyword include "snapshot sequenti", "make snapshot", "snapshot sequenti repair", "make snapshot sequenti". 
+
+### Flume
+
+Flume is a distributed, reliable, and available service for efficiently collecting, aggregating, and moving large amounts of log data.
+
+One word which is a good predictor of type 4 in flume is "upgrad" and the 2-grams (upgrad flume) and the 3-grams ("upgrad flume to") versions.
+Once again for the Apache dataset, a change in the software that induce a change in the underlying data model or data store, which is often the case when you upgrade flume to a new version, is a good indicator of the report complexity and the impact of said report on the sourcecode in terms of number of locations fixed.
+
+On the reports manually analyzed, Flume's developers and users have a hard time upgrading to new versions in a sense that logs and dashboard get corrupted or disapear post-upgrade.
+Significant efforts are then made in order to prevent such loses in the subsequent version.
+
+### HBase 
+
+HBase is a Hadoop database, a distributed, scalable, big data store provided by Apache.
+The best predictor of type 4 bug in HBase is "bloom" as in "bloom filters". 
+Bloom filters are a  probabilistic data structure that is used to test whether an element is a member of a set. (Network Applications of Bloom Filters: A Survey) 
+Such a feature is hard to implement and hard to test because of its probabilistic nature.
+A lot of feature commits (i.e. commit intended to add a feature) and fix commits (i.e. commit intended to fix a bug) beloging to the Hbase source code are related to the bloom filters.
+Given the natre of the feature, it is not suprising to find the word "bloom" and its 2-, 3-grams counterparts ("on bloom", "bloom filter", "on bloom filter") as a good predictor of type 4 bug.
+
+### Hive 
+
+Hive is a data warehouse software facilitates reading, writing, and managing large datasets residing in distributed storage using SQL.
+Hive is different from its Apache counterpart as the words that are the best predictors of type 4 bugs do not translate into a particular feature of the product but are directly the name of the incriminated part of the system: thrift. 
+Thrift is a software framework, for scalable cross-language services development, combines a software stack with a code generation engine to build services that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, OCaml and Delphi and other languages.
+While Thrift is supposed to solve many compatibality issues when building clients for a product such as Hive, it is the root cause of many major problems in Hive. 
+The top predictors for type 4 bugs in Hive are "thrifthttpcliservic" and "thriftbinarycliservic".
+
+As Hive, and its client, are built on top of Thrift a it make sense that issues propagating from Thrift induce major refactoring and fixed accross the whole Hive source code.
+
+### Cnd 
+
+The CND projects is a part of the Netbeans IDE and provide support for C/C++.
+The top two predicators of type 4 bugs are (1) parralelism and (2) obsevability of c/c++ code.
+In each gram, we can find reference of the parrallel code being problematique while developed and executed via the Netbeans IDE: "parallel comput", "parallel", "parallel comput advis".
+The other word, related to the observability of c/c++ code inside the Netbeans IDE is "Gizmo". "Gizmo" is the codename for the C/C++ Observability Tool built on top of D-Light Toolkit. 
+We can find occurences of "Gizmo" in each gram : "gizmo" and "gizmo monitor" for example.
+
+Once again, a complex cross-concern feature with a high impact on the end-user (i.e., the ability to code, execute and debug parrallel code inside Netbeans) is a the root cause of most of the type 4 bugs and mention of said feature in the report is a bug predictor of type of the bug.
+
+### Editor 
+
+The Editor component of Netbeans is the component which is handling all the textual edition, regardless of the programming language, in Netbeans.
+For this component, the type 4 bugs are most likely related to the "trailling white spaces" and "spellcheck" features.
+
+While these features do not, at first sight, be as complex as, for example, parralelism debugging, they have been the cause of the majority of type 4 bugs.
+Upon manuall inspection of the related code (https://netbeans.org/projects/editor/) in the Editor component of Netbeans the complexity of these feature becomes evident.
+Indeed, theses features behave differently for almost each type of text-file and textboxes inside Netbeans.
+For example, the end-user expects the spellchecking feature of the IDE to kick in while typing a comment inside a code file but not on the code itself. 
+A similar example can be described for the identification and removing of trailling white spaces where users wish the trailling white spaces to be deleted in c/c++ code but not, for example, while typing html or a commit message.
+
+Each new language supported or addon supported by the Netbeans IDE and leveraging the features of the Editor component is suceptible to be the root cause of a major refactoring in order to have a coherent behaviour in terms of "trailling white spaces" and "spellchecking".
+
+### Java
+
+The Java component of Netbeans is reponsible for the Java support of Netbeans in the same fashion as CND is reponsible for c/c++ support.
+For this particular component the set of features that are good predictor of type 4 are the ones related to the Java autcompletion and navigation optimization.
+The autocompletion have to be able to provide suggestion in a near-instaneous manner if it is to be usefull to the developer. 
+In order to provide near-instaneous suggestion on modest machines and despite the depth of the Java API, Netbeans developers opted of a statisticall autocompletion.
+The autocompletion *remembers* which of its suggestions you used before and only provide the ones
+you are the most likely to want based on your previous usage.
+In addition, each suggestion is companioned with percentage which describe the number of time you pick a given suggestion over the other.
+One can envision a such a system can be tricky to implement with respect to new API being added in the Java language at each upgrade.
+Indeed, when a new API comes to light following a Java upgrade on the developer's machine, then, the autocompletion has to make these new API appears in the autocompletion despite their 0\% choosed rate. The 0\% being linked to the fact that this suggestion was not available thus far and not to the fact that the developer never picked it.
+When the new suggestion, related to the new API, has been ignored a given number of time, then, it can be safely removed for the list of suggestions.
+
+Implementation of optimizations related to autocompletions and navigations are the root causes of many type 4 bugs and we can find them in the gram extracted words that are good predictor: "implement optim", "move otim", "optim import implement", "call hierarchi implement".
+
+### JavaEE
+
+The JavaEE component of Netbeans is reponsible for the support of the JavaEE in Netbeans. 
+This module is different from the CND and JAVA module in a sense that it uses and expands a lot of functionalities from the JAVA component.
+For the JavaEE component the best predictor of type 4 bugs are the hibernate and webscoket features which can be found in many gram forms: "hibern revers", "websocket endpoint", "hibern", "websocket", "implement hibern revers", "hibern revers engin".
+
+Hibernate is an ORM that enables developers to more easily write applications whose data outlives the application process. 
+As an Object/Relational Mapping (ORM) framework, Hibernate is concerned with data persistence as it applies to relational databases (via JDBC). 
+
+The shortcoming of Netbeans leading to most of the type 4 bugs are related to the annotation based persistence of Hibernate where developers can annotate their class attributes with the name of the column they wish the value of the attribute to be persisted.
+While the annotation mechanism is supported by Java, it is not possible *compile* annotation and make sure that their statically sound.
+Consequently, a lot of tooling around annotation have to be developed and maintained accordingly to new databases updates.
+Such tooling, for example, is responsible for querying the database model in order to make sure that the annotated columns exists and is able to store the attribute data type-wise.
+
+### Platform
+
+The last netbeans component we analyzed is the one named Platform. 
+*The NetBeans Platform is a generic framework for Swing applications. It provides the "plumbing" that, before, every developer had to write themselves—saving state, connecting actions to menu items, toolbar items and keyboard shortcuts; window management, and so on.* (https://netbeans.org/features/platform/)
+
+The best predictor of type 4 bug in the platform component is the "filesystem" word which refers to the ability of any application built atop of Platform to use the filesystem for saves and such.
+
+What we can conclude for this second research question is that the best predictor of type 4 bugs are the mention of a cross-concern, complex, widely used feature in the targeted system.
+Reports mentionning said feature are likely to create a type 4 structure with many bugs being fixed in the same set of files.
+One noteworthy observation is that the 2- and 3-grams extraction do not add much to the precision with regard to the 1-gram extraction as seen the first research question.
+Upon the manual analysis required for this research question, we can deduct why.
+Indeed, the problematic features within a given system are identified with a single word (i.e. hibernate, filesystem, spellcheck, ...).
+While the 2- and 3-grams classifiers do not provide an additional performance in the classification process they still become handy when trying to target which part of the feature a good predictor of type 4 (implement optim, gizmo monitor, heatmap displai, ...)
+
