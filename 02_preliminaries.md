@@ -1,5 +1,9 @@
+# Preliminaries
+
+In this section, we present some preliminaries about version control systems and project tracking systems.
+
 ## Version control systems\label{sec:version-control}
-[WAHAB: If we need to reduce the number of pages, you can remove this section.]
+
 Version control consists of maintaining the versions of files --- such as source code and other software artifacts [@Zeller1997]. Version control tools have been created to help practitioners manage the version of their software artifacts.
 Each evolution of software is a version (or revision), and each version (revision) is linked to the one before through modifications of software artifacts.
 These modifications consist of updating, adding or deleting software artifacts.
@@ -28,7 +32,7 @@ The second leaf (blue) contains the leaf hash and the hashes of the files of the
 
 In this example, we can see that author "Mathieu" has created the file $file1.java$ with the message "project init".
 
-\subsection{Project Tracking Systems\label{sec:issue-tracking}}
+## Project Tracking Systems\label{sec:issue-tracking}
 
 Project tracking systems allow end users to create bug reports (BRs) to report unexpected system behavior.
 These systems are also used by development teams to keep track of the modifications induced by a bug and bug reports, and keep track of the fixes.
@@ -39,6 +43,7 @@ These systems are also used by development teams to keep track of the modificati
 	\caption{Lifecyle of a report [@Bugzilla2008]}
 	\label{fig:bug-lifecyle}
 \end{figure}
+
 
 Figure \ref{fig:bug-lifecyle} presents the life cycle of a report.
 When a report is submitted by an end-user, it is set to the *UNCONFIRMED* state until it receives enough votes or that a user with the proper permissions modifies its status to *NEW*.
