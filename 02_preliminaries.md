@@ -4,9 +4,9 @@ In this section, we present some preliminaries about version control systems and
 
 ## Version control systems\label{sec:version-control}
 
-Version control consists of maintaining the versions of files --- such as source code and other software artifacts [@Zeller1997]. Version control tools have been created to help practitioners manage the version of their software artifacts.
-Each evolution of software is a version (or revision), and each version (revision) is linked to the one before through modifications of software artifacts.
-These modifications consist of updating, adding or deleting software artifacts.
+Version control consists of maintaining the versions of files --- such as source code and other software artefacts [@Zeller1997]. Version control tools have been created to help practitioners manage the version of their software artefacts.
+Each evolution of software is a version (or revision), and each version (revision) is linked to the one before through modifications of software artefacts.
+These modifications consist of updating, adding or deleting software artefacts.
 They can be referred as diff, patch or commit\footnote{These names are not to be used interchangeably as a difference exists.}.
 Each diff, patch or commit have the following characteristics:
 
@@ -34,8 +34,8 @@ In this example, we can see that author "Mathieu" has created the file $file1.ja
 
 ## Project Tracking Systems\label{sec:issue-tracking}
 
-Project tracking systems allow end users to create bug reports (BRs) to report unexpected system behavior.
-These systems are also used by development teams to keep track of the modifications induced by a bug and bug reports, and keep track of the fixes.
+Project tracking systems allow end users to create bug reports (BRs) to report unexpected system behaviour.
+These systems are also used by development teams to keep track of the modifications induced by a bug and bug reports and keep track of the fixes.
 
 \begin{figure}[h!]
 	\centering
@@ -67,7 +67,7 @@ Then, the person in charge (quality assurance team, manager, etc...) will be abl
 If the report is reopened: the days between the time the report is reopened and the time it is marked again as *RESOLVED FIXED* are cumulated.
 Reports can be reopened many times.
 
-Tasks follow a similar life cycle with the exception of the *UNCONFIRMED* and *RESOLVED* states.
+Tasks follow a similar life cycle except the *UNCONFIRMED* and *RESOLVED* states.
 Tasks are created by management and do not need to be confirmed to be *OPEN* and *ASSIGNED* to developers.
 When a task is complete, it will not go to the *RESOLVED* state, but to the *IMPLEMENTED* state.
 Bug and crash reports are considered as problems to eradicate in the program.
@@ -83,9 +83,9 @@ The possible severities are:
 - major: major loss of function.
 - normal: regular report, some loss of functionality under specific circumstances.
 - minor: minor loss of function, or other problem where easy workaround is present.
-- trivial: cosmetic problems like misspelled words or misaligned text.
+- trivial: cosmetic problems like misspelt words or misaligned text.
 
-The relationship between an report or a task and the actual modification can be hard to establish, and it has been a subject of various research studies (e.g., [@Antoniol2002; @Bachmann2010; @Wu2011]).
+The relationship between a report or a task and the actual modification can be hard to establish, and it has been a subject of various research studies (e.g., [@Antoniol2002; @Bachmann2010; @Wu2011]).
 This reason is that they are in two different systems: the version control system and the project tracking system.
-While it is considered a good practice to link each report with the versioning system by indicating the report $\#id$ on the modification message, it has been shown than more than half of the submitted reports are not linked to their corresponding source code changes [@Wu2011].
+While it is considered a good practice to link each report with the versioning system by indicating the report $\#id$ on the modification message, it has been shown that more than half of the submitted reports are not linked to their corresponding source code changes [@Wu2011].
 

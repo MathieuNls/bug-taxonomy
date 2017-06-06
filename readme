@@ -1,0 +1,3 @@
+# Build
+
+` pandoc -s -S --filter pandoc-citeproc --number-sections --template=default.latex -o output.pdf *.md`

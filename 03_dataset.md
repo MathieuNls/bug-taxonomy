@@ -1,12 +1,12 @@
-# Dataset 
+﻿# Dataset 
 
 In this section, we present our datasets in length.
-In this presentation we explore the proportion of each type of bug as well as the complexity of each type.
+In this presentation, we explore the proportion of each type of bug as well as the complexity of each type.
 
 ## Context Selection\label{sec:context-selection}
 
 The context of this study consists of the change history of 388 projects belonging to two software ecosystems, namely, Apache and Netbeans.
-Table \ref{table:datasets} reports, for each of them, (i) the number of resolved-fixed reports, (ii) the number of commits, (iii) the overall number of files, and (iv) the number of projects analyzed.
+Table \ref{table:datasets} reports, for each of them, (i) the number of resolved-fixed reports, (ii) the number of commits, (iii) the overall number of files, and (iv) the number of projects analysed.
 
 \begin{table}[h]
 \begin{center}
@@ -23,7 +23,7 @@ Total            & 102,707         & 229,153     & 68,809         & 388         
 \end{table}
 
 
-All the analyzed projects are hosted in *Git* or *Mercurial* repositories and have either a *Jira* or a *Bugzilla* issue tracker associated with them.
+All the analysed projects are hosted in *Git* or *Mercurial* repositories and have either a *Jira* or a *Bugzilla* issue tracker associated with them.
 The Apache ecosystem consists of 349 projects written in various programming languages (C, C++, Java, Python, ...) and uses *Git* with *Jira*.
 These projects represent the Apache ecosystem in its entirety. We did not exclude any system from our study.
 The complete list can be found online\footnote{https://projects.apache.org/projects.html?name}.
@@ -39,10 +39,10 @@ We also collected 221 million lines of code modified to fix bugs, identified 3,2
 The cumulated opening time for all the bugs reaches 10,661 working years (3,891,618 working days). 
 The raw size of the cloned source code alone, excluding binaries, images, and other non-text file, is 163 GB.
 
-To assign commits to issues we used the regular expression based approach proposed by Fischer et al. [@Fischer], which  matches the issue ID in the commit note to the commit.
+To assign commits to issues, we used the regular expression based approach proposed by Fischer et al. [@Fischer], which matches the issue ID in the commit note to the commit.
 Using this technique, we were able to link almost 40\% (40,493 out of 102,707) of our resolved/fixed issues to 229,153 commits. Note that an issue can be fixed using several commits.
 
-## Dataset Analysis\label{sec:context-selection}
+## Dataset Analysis\label{sec:dataset}
 
 Using our dataset, we extracted the files $f_i$ impacted by each commit $c_i$ for each one of our 388 projects. 
 Then, we classified the bugs according to each type, which we formulate as follows: 
@@ -57,12 +57,12 @@ Then, we classified the bugs according to each type, which we formulate as follo
 Table \ref{tab:contingency-table} presents the contingency table and the results of the Pearson's chi-squared tests we performed on each type of bug.
 We can see that the proportion of T4 (61.2\%) largely higher than that of T1 (6.8\%), 2 (3.7\%) and 3 (28.3\%) and that the difference is significant according to the Pearson's chi-squared test. 
 
-Pearson's chi-squared independence test is used to analyze the relationship between two qualitative data, in our study the type bugs and the studied ecosystem. 
-The results of Pearson's chi-squared independence tests are considered statistically significant at = 0.05. 
+Pearson's chi-squared independence test is used to analyse the relationship between two qualitative data, in our study the type bugs and the studied ecosystem. 
+The results of Pearson's chi-square independence tests are considered statistically significant at = 0.05. 
 If p-value $\leq$ 0.05, we can conclude that the proportion of each type is significantly different.
 
 
-we analyze the complexity of each bug in terms of duplication, fixing time, number of comments, number of time a bug is reopened, files impacted, severity, changesets, hunks, and chunks.
+we analyse the complexity of each bug regarding duplication, fixing time, number of comments, number of time a bug is reopened, files impacted, severity, changesets, hunks, and chunks.
 
 Complexity metrics are divided into two groups: (a) process and (b) code metrics.
 Process metrics refer to metrics that have been extracted from the project tracking system (i.e., fixing time, comments, reopening and severity).
@@ -99,7 +99,7 @@ A bug report can be reopened several times and all the times are added.
 In this section, the time is expressed in days [@Weiss2007; @Zhang2012; @Zhang2013].
 
 When combined, both ecosystem amounts in the following order $T2_{time}^4 > T4_{time}^1 \gg T1_{time}^3 \gg T3_{time}^2$.
-This contradicts the finding of Saha  *et al.*, however, they did not study the Netbeans ecosystem in their paper [@Saha2014].
+These findings contradicts the finding of Saha  *et al.*, however, they did not study the Netbeans ecosystem in their paper [@Saha2014].
 
 ### Comments
 
@@ -136,12 +136,12 @@ Overall, T4 impacts more files than T2 while T1 and T2 impacts only 1 file ($T4_
 ### Changesets
 
 The changeset metrics registers how many changesets (or commits/patch/fix) have been required to close the bug report.
-In the project tracking system, changesets to resolve the bug are proposed and analyzed by the community, automated quality insurance tools and the quality insurance team itself.
+In the project tracking system, changesets to resolve the bug are proposed and analysed by the community, automated quality insurance tools and the quality insurance team itself.
 Each changeset can be either accepted and applied to the source code or dismissed.
 The number of changesets (or versions of a given changeset) it takes before an integration can hint us about the complexity of the fix.
 In case the bug report gets reopen, and new changesets proposed, the new changesets (after the reopening) are added to the old ones (before the reopening).
 
-Overall, T4 bugs are the most complex bugs in terms of the number of submitted changesets ($T4_{changesets}^1 \gg T2_{changesets}^3 \gg T3_{changesets}^2 \gg T1_{changesets}^4$).
+Overall, T4 bugs are the most complex bugs regarding the number of submitted changesets ($T4_{changesets}^1 \gg T2_{changesets}^3 \gg T3_{changesets}^2 \gg T1_{changesets}^4$).
 
 While results have been published on the bug-fix patterns [@Pan2008], smell introduction [@Tufano2015; @Eyolfson2011], to the best of our knowledge, no one interested themselves in how many iterations of a patch was required to close a bug report beside us.
 
@@ -163,10 +163,10 @@ Once again, this is a widely used metric in the field [@Kim2006; @Pan2008; @Jung
 
 Once again, T4 and T2 are the ones with the most churns; Apache ecosystem $T4_{churns}^1 \gg T2_{churns}^2 \gg T1_{churns}^4 > T3_{churns}^3$, Netbeans ecosystem: $T4_{churns}^1 \gg T2_{churns}^3 \gg T3_{churns}^2 \gg T1_{churns}^4$ and overall : $T4_{churns}^1 \gg T2_{churns}^2 \gg T1_{churns}^4 \gg T3_{churns}^3$.
 
-In order to determine which type is the most complex, we counted how many times each bug type obtained each position in our nine rankings and multiply them by 4 for the first place, 3 for the second, 2 for the third and 1 for the fourth place.
+To determine which type is the most complex, we counted how many times each bug type obtained each position in our nine rankings and multiply them by 4 for the first place, 3 for the second, 2 for the third and 1 for the fourth place.
 
 We did the same simple analysis of the rank of each type for each metric, to take into account the frequency of bug types in our calculation, and multiply both values.
 The complexity scores we calculated are as follows: 1330, 1750, 2580 and 7120 for T1, T2, T3 and T4 bugs, respectively.
 
-Considering that type 4 bugs are (a) the most common, (b) the most complex and (c) not a type we intuitively know about; we decided to kick start our research into the different type of bugs and their impact by predicting wether an incoming bug report is type 4 or not.
+Considering that type 4 bugs are (a) the most common, (b) the most complex and (c) not a type we intuitively know about; we decided to kick start our research into the different type of bugs and their impact by predicting wether an incoming bug report type 4 or not.
 
